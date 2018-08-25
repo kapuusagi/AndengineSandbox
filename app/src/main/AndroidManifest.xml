@@ -1,0 +1,43 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.github.kapuusagi.sandbox">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".BasicAndengineActivity" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".CanvasTextureCompositingExample" android:label="andenginesandbox">
+        </activity>
+        <activity android:name=".TextExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".TextMenuExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".EaseFunctionExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".TouchDragExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".AnalogOnScreenControlExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".MenuExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".SubMenuExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".EntityExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".TickerTextExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".FrameEntityExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".CanvasSpriteExample" android:label="@string/app_name">
+            <!-- 起動時のメインアクティビティにするならTrue設定する -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
