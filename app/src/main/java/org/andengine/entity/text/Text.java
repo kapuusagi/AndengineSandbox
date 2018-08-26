@@ -135,7 +135,7 @@ public class Text extends Shape {
 	protected final ITextVertexBufferObject mTextVertexBufferObject;
 
 	/**
-	 *
+	 * 文字データ
 	 */
 	protected CharSequence mText;
 	/**
@@ -152,7 +152,9 @@ public class Text extends Shape {
 	// ===========================================================
 
 	/**
-	 * コンストラクタ
+	 * 位置とフォントを指定してTextオブジェクトを構築する。
+	 * テキストは変更可能だが、pTextで指定した文字数を超えると例外がスルーされることに注意する。
+	 *
 	 * @param pX X位置
 	 * @param pY Y位置
 	 * @param pFont フォント
@@ -165,7 +167,7 @@ public class Text extends Shape {
 	}
 
 	/**
-	 * コンストラクタ
+	 *
 	 * @param pX X位置
 	 * @param pY Y位置
 	 * @param pFont フォント
@@ -180,7 +182,7 @@ public class Text extends Shape {
 	}
 
 	/**
-	 * コンストラクタ
+	 *
 	 *
 	 * @param pX X座標
 	 * @param pY Y座標
@@ -200,6 +202,17 @@ public class Text extends Shape {
 		this(pX, pY, pFont, pText, new TextOptions(), pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
+	/**
+	 * 位置とフォント、テキストオプションを指定してテキストオブジェクトを構築する。
+	 * テキストは変更可能だが、pTextで指定した文字数を超えると例外がスルーされることに注意する。
+	 *
+	 * @param pX x位置
+	 * @param pY y位置
+	 * @param pFont フォント
+	 * @param pText テキスト
+	 * @param pTextOptions  テキストオプション
+	 * @param pVertexBufferObjectManager バーテックスバッファマネージャ
+	 */
 	public Text(final float pX, final float pY, final IFont pFont, final CharSequence pText,
 				final TextOptions pTextOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pFont, pText, pTextOptions, pVertexBufferObjectManager, DrawType.STATIC);

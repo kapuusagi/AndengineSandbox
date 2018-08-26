@@ -78,15 +78,44 @@ public final class FontFactory {
 		return FontFactory.create(pFontManager, pTexture, pSize, pAntiAlias, FontFactory.COLOR_DEFAULT);
 	}
 
-	public static Font create(final FontManager pFontManager, final ITexture pTexture, final float pSize, final int pColor) {
+	public static Font create(final FontManager pFontManager,
+							  final ITexture pTexture,
+							  final float pSize, final int pColor) {
 		return FontFactory.create(pFontManager, pTexture, pSize, FontFactory.ANTIALIAS_DEFAULT, pColor);
 	}
 
-	public static Font create(final FontManager pFontManager, final ITexture pTexture, final float pSize, final boolean pAntiAlias, final int pColor) {
+	/**
+	 * 使用するテクスチャ、アンチエイリアスオプション、フォント色を指定してフォントを作成する。
+	 *
+	 * @param pFontManager フォントマネージャ
+	 * @param pTexture テクスチャ
+	 * @param pSize フォントサイズ
+	 * @param pAntiAlias アンチエイリアス有無（アンチエイリアスをかける場合にtrue）
+	 * @param pColor フォントカラー
+	 * @return Fontオブジェクトが返る。
+	 */
+	public static Font create(final FontManager pFontManager,
+							  final ITexture pTexture,
+							  final float pSize, final boolean pAntiAlias, final int pColor) {
 		return FontFactory.create(pFontManager, pTexture, Typeface.create(Typeface.DEFAULT, Typeface.NORMAL), pSize, pAntiAlias, pColor);
 	}
 
-	public static Font create(final FontManager pFontManager, final TextureManager pTextureManager, final int pTextureWidth, final int pTextureHeight, final float pSize, final boolean pAntiAlias, final int pColor) {
+	/**
+	 * アンチエイリアスオプション、フォント色を指定してフォントを作成する。
+	 * テクスチャはpTextureManagerからpTextureWidth, pTextureHeightを元に作成する。
+	 *
+	 * @param pFontManager フォントマネージャ
+	 * @param pTextureManager テクスチャマネージャ
+	 * @param pTextureWidth テクスチャサイズ
+	 * @param pTextureHeight テクスチャ高さ
+	 * @param pSize フォントサイズ
+	 * @param pAntiAlias アンチエイリアス有無（アンチエイリアスをかける場合にtrue）
+	 * @param pColor フォントカラー
+	 * @return Fontオブジェクトが返る。
+	 */
+	public static Font create(final FontManager pFontManager,
+							  final TextureManager pTextureManager, final int pTextureWidth, final int pTextureHeight,
+							  final float pSize, final boolean pAntiAlias, final int pColor) {
 		return FontFactory.create(pFontManager, pTextureManager, pTextureWidth, pTextureHeight, TextureOptions.DEFAULT, pSize, pAntiAlias, pColor);
 	}
 
@@ -98,12 +127,42 @@ public final class FontFactory {
 		return FontFactory.create(pFontManager, pTextureManager, pTextureWidth, pTextureHeight, TextureOptions.DEFAULT, pTypeface, pSize, FontFactory.ANTIALIAS_DEFAULT, FontFactory.COLOR_DEFAULT);
 	}
 
-	public static Font create(final FontManager pFontManager, final TextureManager pTextureManager, final int pTextureWidth, final int pTextureHeight, final Typeface pTypeface, final float pSize, final boolean pAntiAlias) {
-		return FontFactory.create(pFontManager, pTextureManager, pTextureWidth, pTextureHeight, TextureOptions.DEFAULT, pTypeface, pSize, pAntiAlias, FontFactory.COLOR_DEFAULT);
+    /**
+     *
+     * @param pFontManager
+     * @param pTextureManager
+     * @param pTextureWidth
+     * @param pTextureHeight
+     * @param pTypeface
+     * @param pSize
+     * @param pAntiAlias
+     * @return
+     */
+	public static Font create(final FontManager pFontManager, final TextureManager pTextureManager,
+                              final int pTextureWidth, final int pTextureHeight,
+                              final Typeface pTypeface, final float pSize, final boolean pAntiAlias) {
+		return FontFactory.create(pFontManager, pTextureManager, pTextureWidth, pTextureHeight,
+                TextureOptions.DEFAULT, pTypeface, pSize, pAntiAlias, FontFactory.COLOR_DEFAULT);
 	}
 
-	public static Font create(final FontManager pFontManager, final TextureManager pTextureManager, final int pTextureWidth, final int pTextureHeight, final Typeface pTypeface, final float pSize, final int pColor) {
-		return FontFactory.create(pFontManager, pTextureManager, pTextureWidth, pTextureHeight, TextureOptions.DEFAULT, pTypeface, pSize, FontFactory.ANTIALIAS_DEFAULT, pColor);
+	/**
+	 * タイプフェース、フォントサイズ、フォント色を指定してフォントを作成する。
+     * アンチエイリアスは有効になる。
+     *
+	 * @param pFontManager フォントマネージャ
+	 * @param pTextureManager テクスチャマネージャ
+	 * @param pTextureWidth テクスチャ幅
+	 * @param pTextureHeight テクスチャ高さ
+	 * @param pTypeface タイプフェース
+	 * @param pSize フォントサイズ
+	 * @param pColor フォントカラー
+	 * @return Fontオブジェクトが返る。
+	 */
+	public static Font create(final FontManager pFontManager, final TextureManager pTextureManager,
+                              final int pTextureWidth, final int pTextureHeight,
+                              final Typeface pTypeface, final float pSize, final int pColor) {
+		return FontFactory.create(pFontManager, pTextureManager, pTextureWidth, pTextureHeight,
+                TextureOptions.DEFAULT, pTypeface, pSize, FontFactory.ANTIALIAS_DEFAULT, pColor);
 	}
 
 	public static Font create(final FontManager pFontManager, final TextureManager pTextureManager, final int pTextureWidth, final int pTextureHeight, final Typeface pTypeface, final float pSize, final boolean pAntiAlias, final int pColor) {

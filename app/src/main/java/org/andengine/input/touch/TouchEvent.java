@@ -18,10 +18,25 @@ public class TouchEvent {
 
 	public static final int INVALID_POINTER_ID = -1;
 
+	/**
+	 * ACTION_UP + ACTION_DOWN同時発生(キャンセル)
+	 */
 	public static final int ACTION_CANCEL = MotionEvent.ACTION_CANCEL;
+	/**
+	 * タッチ押下イベント。
+	 */
 	public static final int ACTION_DOWN = MotionEvent.ACTION_DOWN;
+	/**
+	 * タッチしたまま動したイベント。
+	 */
 	public static final int ACTION_MOVE = MotionEvent.ACTION_MOVE;
+	/**
+	 * タッチ領域を外れた場合
+	 */
 	public static final int ACTION_OUTSIDE = MotionEvent.ACTION_OUTSIDE;
+	/**
+	 * タッチを離すイベント。
+	 */
 	public static final int ACTION_UP = MotionEvent.ACTION_UP;
 
 	private static final TouchEventPool TOUCHEVENT_POOL = new TouchEventPool();
@@ -99,6 +114,10 @@ public class TouchEvent {
 		return this.mPointerID;
 	}
 
+	/**
+	 * タッチイベントのアクションを取得する。
+	 * @return アクションが返る。
+	 */
 	public int getAction() {
 		return this.mAction;
 	}

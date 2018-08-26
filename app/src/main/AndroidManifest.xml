@@ -33,6 +33,10 @@
         <activity android:name=".FrameEntityExample" android:label="@string/app_name">
         </activity>
         <activity android:name=".CanvasSpriteExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ScrollDisplayExample" android:label="@string/app_name">
+        </activity>
+        <activity android:name=".ClipEntityExample" android:label="@string/app_name">
             <!-- 起動時のメインアクティビティにするならTrue設定する -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
