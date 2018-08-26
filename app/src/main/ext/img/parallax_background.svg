@@ -41,11 +41,11 @@
       <stop
          id="stop3991"
          offset="0"
-         style="stop-color:#000000;stop-opacity:1;" />
+         style="stop-colorF:#000000;stop-opacity:1;" />
       <stop
          id="stop3993"
          offset="1"
-         style="stop-color:#e45a14;stop-opacity:1;" />
+         style="stop-colorF:#e45a14;stop-opacity:1;" />
     </linearGradient>
     <inkscape:perspective
        id="perspective2824"

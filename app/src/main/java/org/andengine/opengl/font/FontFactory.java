@@ -5,7 +5,7 @@ import org.andengine.opengl.texture.ITexture;
 import org.andengine.opengl.texture.PixelFormat;
 import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -23,7 +23,7 @@ public final class FontFactory {
 	// ===========================================================
 
 	private static final boolean ANTIALIAS_DEFAULT = true;
-	private static final int COLOR_DEFAULT = Color.BLACK_ARGB_PACKED_INT;
+	private static final int COLOR_DEFAULT = ColorF.BLACK_ARGB_PACKED_INT;
 
 	// ===========================================================
 	// Fields

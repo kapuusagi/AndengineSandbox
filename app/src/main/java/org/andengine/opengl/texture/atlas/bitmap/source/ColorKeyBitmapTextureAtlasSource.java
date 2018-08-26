@@ -1,6 +1,6 @@
 package org.andengine.opengl.texture.atlas.bitmap.source;
 
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 
 /**
  * (c) 2010 Nicolas Gramlich
@@ -22,20 +22,20 @@ public class ColorKeyBitmapTextureAtlasSource extends ColorSwapBitmapTextureAtla
 	// Constructors
 	// ===========================================================
 
-	public ColorKeyBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final Color pColorKeyColor) {
-		super(pBitmapTextureAtlasSource, pColorKeyColor, Color.TRANSPARENT);
+	public ColorKeyBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final ColorF pColorKeyColorF) {
+		super(pBitmapTextureAtlasSource, pColorKeyColorF, ColorF.TRANSPARENT);
 	}
 
 	public ColorKeyBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final int pColorKeyColorARGBPackedInt) {
-		super(pBitmapTextureAtlasSource, pColorKeyColorARGBPackedInt, Color.TRANSPARENT_ARGB_PACKED_INT);
+		super(pBitmapTextureAtlasSource, pColorKeyColorARGBPackedInt, ColorF.TRANSPARENT_ARGB_PACKED_INT);
 	}
 
-	public ColorKeyBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final Color pColorKeyColor, final int pTolerance) {
-		super(pBitmapTextureAtlasSource, pColorKeyColor, pTolerance, Color.TRANSPARENT);
+	public ColorKeyBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final ColorF pColorKeyColorF, final int pTolerance) {
+		super(pBitmapTextureAtlasSource, pColorKeyColorF, pTolerance, ColorF.TRANSPARENT);
 	}
 
 	public ColorKeyBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final int pColorKeyColorARGBPackedInt, final int pTolerance) {
-		super(pBitmapTextureAtlasSource, pColorKeyColorARGBPackedInt, pTolerance, Color.TRANSPARENT_ARGB_PACKED_INT);
+		super(pBitmapTextureAtlasSource, pColorKeyColorARGBPackedInt, pTolerance, ColorF.TRANSPARENT_ARGB_PACKED_INT);
 	}
 
 	@Override

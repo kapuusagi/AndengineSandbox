@@ -18,7 +18,21 @@ public interface ISpriteVertexBufferObject extends IVertexBufferObject {
 	// Methods
 	// ===========================================================
 
-	public void onUpdateColor(final ISprite pSprite);
-	public void onUpdateVertices(final ISprite pSprite);
-	public void onUpdateTextureCoordinates(final ISprite pSprite);
+	/**
+	 * 色が変更されたときの通知を受け取る
+	 * @param pSprite スプライトオブジェクト
+	 */
+	void onUpdateColor(final ISprite pSprite);
+
+	/**
+	 * バーテックスが変更されたときの通知を受け取る。
+	 * @param pSprite スプライトオブジェクト
+	 */
+	void onUpdateVertices(final ISprite pSprite);
+
+	/**
+	 * テクスチャ座標が変更されたときの通知を受け取る。
+	 * @param pSprite スプライトオブジェクト
+	 */
+	void onUpdateTextureCoordinates(final ISprite pSprite);
 }

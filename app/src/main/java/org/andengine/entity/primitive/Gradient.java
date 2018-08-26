@@ -12,7 +12,7 @@ import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttribute;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttributes;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttributesBuilder;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 import org.andengine.util.math.MathUtils;
 
 import android.opengl.GLES20;
@@ -47,7 +47,7 @@ public class Gradient extends Shape {
 
 	protected final IGradientVertexBufferObject mGradientVertexBufferObject;
 
-	private final Color mToColor = new Color(Color.WHITE);
+	private final ColorF mToColorF = new ColorF(ColorF.WHITE);
 	private float mGradientVectorX = 0;
 	private float mGradientVectorY = -1;
 	private boolean mGradientFitToBounds;
@@ -139,7 +139,7 @@ public class Gradient extends Shape {
 
 	@Deprecated
 	@Override
-	public Color getColor() {
+	public ColorF getColor() {
 		return super.getColor();
 	}
 
@@ -169,8 +169,8 @@ public class Gradient extends Shape {
 
 	@Deprecated
 	@Override
-	public void setColor(final Color pColor) {
-		super.setColor(pColor);
+	public void setColor(final ColorF pColorF) {
+		super.setColor(pColorF);
 	}
 
 	@Deprecated
@@ -201,7 +201,7 @@ public class Gradient extends Shape {
 		return super.getAlpha();
 	}
 
-	public Color getFromColor() {
+	public ColorF getFromColor() {
 		return super.getColor();
 	}
 
@@ -252,35 +252,35 @@ public class Gradient extends Shape {
 		super.setColor(pRed, pGreen, pBlue, pAlpha);
 	}
 
-	public void setFromColor(final Color pColor) {
-		super.setColor(pColor);
+	public void setFromColor(final ColorF pColorF) {
+		super.setColor(pColorF);
 	}
 
 	public float getToRed() {
-		return this.mToColor.getRed();
+		return this.mToColorF.getRed();
 	}
 
 	public float getToGreen() {
-		return this.mToColor.getGreen();
+		return this.mToColorF.getGreen();
 	}
 
 	public float getToBlue() {
-		return this.mToColor.getBlue();
+		return this.mToColorF.getBlue();
 	}
 
 	public float getToAlpha() {
-		return this.mToColor.getAlpha();
+		return this.mToColorF.getAlpha();
 	}
 
-	public Color getToColor() {
-		return this.mToColor;
+	public ColorF getToColor() {
+		return this.mToColorF;
 	}
 
 	/**
 	 * @param pRed from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToRed(final float pRed) {
-		if (this.mToColor.setRedChecking(pRed)) { // TODO Is this check worth it?
+		if (this.mToColorF.setRedChecking(pRed)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -289,7 +289,7 @@ public class Gradient extends Shape {
 	 * @param pGreen from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToGreen(final float pGreen) {
-		if (this.mToColor.setGreenChecking(pGreen)) { // TODO Is this check worth it?
+		if (this.mToColorF.setGreenChecking(pGreen)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -298,7 +298,7 @@ public class Gradient extends Shape {
 	 * @param pBlue from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToBlue(final float pBlue) {
-		if (this.mToColor.setBlueChecking(pBlue)) { // TODO Is this check worth it?
+		if (this.mToColorF.setBlueChecking(pBlue)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -307,7 +307,7 @@ public class Gradient extends Shape {
 	 * @param pAlpha from <code>0.0f</code> (transparent) to <code>1.0f</code> (opaque)
 	 */
 	public void setToAlpha(final float pAlpha) {
-		if (this.mToColor.setAlphaChecking(pAlpha)) { // TODO Is this check worth it?
+		if (this.mToColorF.setAlphaChecking(pAlpha)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -318,7 +318,7 @@ public class Gradient extends Shape {
 	 * @param pBlue from <code>0.0f</code> to <code>1.0f</code>
 	 */
 	public void setToColor(final float pRed, final float pGreen, final float pBlue) {
-		if (this.mToColor.setChecking(pRed, pGreen, pBlue)) { // TODO Is this check worth it?
+		if (this.mToColorF.setChecking(pRed, pGreen, pBlue)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -330,13 +330,13 @@ public class Gradient extends Shape {
 	 * @param pAlpha from <code>0.0f</code> (transparent) to <code>1.0f</code> (opaque)
 	 */
 	public void setToColor(final float pRed, final float pGreen, final float pBlue, final float pAlpha) {
-		if (this.mToColor.setChecking(pRed, pGreen, pBlue, pAlpha)) { // TODO Is this check worth it?
+		if (this.mToColorF.setChecking(pRed, pGreen, pBlue, pAlpha)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
 
-	public void setToColor(final Color pColor) {
-		if (this.mToColor.setChecking(pColor)) { // TODO Is this check worth it?
+	public void setToColor(final ColorF pColorF) {
+		if (this.mToColorF.setChecking(pColorF)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -378,22 +378,22 @@ public class Gradient extends Shape {
 	}
 
 	public void setGradientColor(final float pFromRed, final float pToRed, final float pFromGreen, final float pToGreen, final float pFromBlue, final float pToBlue) {
-		this.mColor.set(pFromRed, pFromGreen, pFromBlue);
-		this.mToColor.set(pToRed, pToGreen, pToBlue);
+		this.mColorF.set(pFromRed, pFromGreen, pFromBlue);
+		this.mToColorF.set(pToRed, pToGreen, pToBlue);
 
 		this.onUpdateColor();
 	}
 
 	public void setGradientColor(final float pFromRed, final float pToRed, final float pFromGreen, final float pToGreen, final float pFromBlue, final float pToBlue, final float pFromAlpha, final float pToAlpha) {
-		this.mColor.set(pFromRed, pFromGreen, pFromBlue, pFromAlpha);
-		this.mToColor.set(pToRed, pToGreen, pToBlue, pToAlpha);
+		this.mColorF.set(pFromRed, pFromGreen, pFromBlue, pFromAlpha);
+		this.mToColorF.set(pToRed, pToGreen, pToBlue, pToAlpha);
 
 		this.onUpdateColor();
 	}
 
-	public void setGradientColor(final Color pFromColor, final Color pToColor) {
-		this.mColor.set(pFromColor);
-		this.mToColor.set(pToColor);
+	public void setGradientColor(final ColorF pFromColorF, final ColorF pToColorF) {
+		this.mColorF.set(pFromColorF);
+		this.mToColorF.set(pToColorF);
 
 		this.onUpdateColor();
 	}
@@ -402,8 +402,8 @@ public class Gradient extends Shape {
 		this.mGradientVectorX = pGradientVectorX;
 		this.mGradientVectorY = pGradientVectorY;
 
-		this.mColor.set(pFromRed, pFromGreen, pFromBlue);
-		this.mToColor.set(pToRed, pToGreen, pToBlue);
+		this.mColorF.set(pFromRed, pFromGreen, pFromBlue);
+		this.mToColorF.set(pToRed, pToGreen, pToBlue);
 
 		this.onUpdateColor();
 	}
@@ -412,18 +412,18 @@ public class Gradient extends Shape {
 		this.mGradientVectorX = pGradientVectorX;
 		this.mGradientVectorY = pGradientVectorY;
 
-		this.mColor.set(pFromRed, pFromGreen, pFromBlue, pFromAlpha);
-		this.mToColor.set(pToRed, pToGreen, pToBlue, pToAlpha);
+		this.mColorF.set(pFromRed, pFromGreen, pFromBlue, pFromAlpha);
+		this.mToColorF.set(pToRed, pToGreen, pToBlue, pToAlpha);
 
 		this.onUpdateColor();
 	}
 
-	public void setGradient(final Color pFromColor, final Color pToColor, final float pGradientVectorX, final float pGradientVectorY) {
+	public void setGradient(final ColorF pFromColorF, final ColorF pToColorF, final float pGradientVectorX, final float pGradientVectorY) {
 		this.mGradientVectorX = pGradientVectorX;
 		this.mGradientVectorY = pGradientVectorY;
 
-		this.mColor.set(pFromColor);
-		this.mToColor.set(pToColor);
+		this.mColorF.set(pFromColorF);
+		this.mToColorF.set(pToColorF);
 
 		this.onUpdateColor();
 	}

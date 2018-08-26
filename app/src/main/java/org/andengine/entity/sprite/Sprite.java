@@ -18,6 +18,9 @@ import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttributesBuilder;
 import android.opengl.GLES20;
 
 /**
+ * スプライトクラス。
+ * スプライトクラスは1枚のテクスチャを持つ矩形のエンティティを表す。
+ *
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  *
@@ -30,7 +33,7 @@ public class Sprite extends Shape implements ISprite {
 	// ===========================================================
 
 	/**
-	 *
+	 * バーテックスバッファ属性
 	 */
 	public static final VertexBufferObjectAttributes VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT = new VertexBufferObjectAttributesBuilder(3)
 		.add(ShaderProgramConstants.ATTRIBUTE_POSITION_LOCATION, ShaderProgramConstants.ATTRIBUTE_POSITION, 2, GLES20.GL_FLOAT, false)
@@ -65,43 +68,81 @@ public class Sprite extends Shape implements ISprite {
 	// ===========================================================
 
 	/**
+	 * テクスチャと同じサイズのSpriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからSTATICタイプのものが構築される。
+	 * シェーダーはデフォルトのものが使用される。
 	 *
+	 * @param pX x位置
+	 * @param pY y位置
+	 * @param pTextureRegion テクスチャ
+	 * @param pVertexBufferObjectManager バーテックスバッファマネージャ
 	 */
 	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC);
 	}
 
 	/**
+	 * シェーダーを指定してテクスチャと同じサイズのSpriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからSTATICタイプのものが構築される。
 	 *
+	 * @param pX x位置
+	 * @param pY y位置
+	 * @param pTextureRegion テクスチャ
+	 * @param pVertexBufferObjectManager バーテックスバッファマネージャ
+	 * @param pShaderProgram シェーダー
 	 */
 	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
 	/**
+	 * テクスチャと同じサイズのSpriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからpDrawTypeで指定された描画タイプで構築する。
+	 * シェーダーはデフォルトのものが使用される。
 	 *
+	 * @param pX x位置
+	 * @param pY y位置
+	 * @param pTextureRegion テクスチャ
+	 * @param pVertexBufferObjectManager バーテックスバッファマネージャ
+	 * @param pDrawType 描画タイプ
 	 */
 	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, pDrawType);
 	}
 
 	/**
+	 * シェーダーを指定してテクスチャと同じサイズのSpriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからpDrawTypeで指定された描画タイプで構築する。
 	 *
+	 * @param pX x位置
+	 * @param pY y位置
+	 * @param pTextureRegion テクスチャ
+	 * @param pVertexBufferObjectManager バーテックスバッファマネージャ
+	 * @param pDrawType 描画タイプ
+	 * @param pShaderProgram シェーダー
 	 */
 	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObjectManager, pDrawType, pShaderProgram);
 	}
 
 	/**
+	 * バーテックスバッファを指定してテクスチャと同じサイズのSpriteオブジェクトを構築する。
+	 * シェーダーはデフォルトのものが使用される。
 	 *
+	 * @param pX x位置
+	 * @param pY y位置
+	 * @param pTextureRegion テクスチャ
+	 * @param pVertexBufferObject バーテックスバッファ
 	 */
-	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion, final ISpriteVertexBufferObject pVertexBufferObject) {
+	public Sprite(final float pX, final float pY, final ITextureRegion pTextureRegion,
+				  final ISpriteVertexBufferObject pVertexBufferObject) {
 		this(pX, pY, pTextureRegion.getWidth(), pTextureRegion.getHeight(), pTextureRegion, pVertexBufferObject);
 	}
 
 	/**
-	 * コンストラクタ。
-	 * スプライトの幅と高さはテクスチャに依存する。
+	 * テクスチャと同じサイズのSpriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからSTATICタイプで構築する。
+	 * シェーダーはデフォルトのものが使用される。
 	 *
 	 * @param pX x位置
 	 * @param pY y位置
@@ -114,9 +155,9 @@ public class Sprite extends Shape implements ISprite {
 	}
 
 	/**
-	 * コンストラクタ。
-	 * バーテックスバッファは pVertexBufferObjectManager を使ってSTATICなものを作成し、
-	 * シェーダーはデフォルトのものを使用する。
+	 * Spriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからSTATICタイプで構築する。
+	 * シェーダーはデフォルトのものが使用される。
 	 *
 	 * @param pX x位置
 	 * @param pY y位置
@@ -130,8 +171,8 @@ public class Sprite extends Shape implements ISprite {
 	}
 
 	/**
-	 * コンストラクタ。
-	 * バーテックスバッファは pVertexBufferObjectManager を使ってSTATICなものを作る。
+	 * シェーダーを指定してSpriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからSTATICタイプで構築する。
 	 *
 	 * @param pX x位置
 	 * @param pY y位置
@@ -141,14 +182,16 @@ public class Sprite extends Shape implements ISprite {
 	 * @param pVertexBufferObjectManager バーテックスバッファマネージャ
 	 * @param pShaderProgram シェーダー
 	 */
-	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final ShaderProgram pShaderProgram) {
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight,
+				  final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager,
+				  final ShaderProgram pShaderProgram) {
 		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, DrawType.STATIC, pShaderProgram);
 	}
 
 	/**
-	 * コンストラクタ。
-	 * バーテックスバッファは pVertexBufferObjectManager, pDrawTypeを用いて構築し、
-	 * シェーダーはデフォルトのものを使用する。
+	 * Spriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからpDrawTypeで指定されたタイプで構築する。
+	 * シェーダーはデフォルトのものが使用される。
 	 *
 	 * @param pX x位置
 	 * @param pY y位置
@@ -156,15 +199,19 @@ public class Sprite extends Shape implements ISprite {
 	 * @param pHeight 高さ
 	 * @param pTextureRegion テクスチャ
 	 * @param pVertexBufferObjectManager バーテックスバッファマネージャ
-	 * @param pDrawType
+	 * @param pDrawType 描画タイプ
 	 */
-	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight, final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager, final DrawType pDrawType) {
-		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, pDrawType, PositionColorTextureCoordinatesShaderProgram.getInstance());
+	public Sprite(final float pX, final float pY, final float pWidth, final float pHeight,
+				  final ITextureRegion pTextureRegion, final VertexBufferObjectManager pVertexBufferObjectManager,
+				  final DrawType pDrawType) {
+		this(pX, pY, pWidth, pHeight, pTextureRegion, pVertexBufferObjectManager, pDrawType,
+				PositionColorTextureCoordinatesShaderProgram.getInstance());
 	}
 
 	/**
-	 * コンストラクタ。
-	 * バーテックスバッファは pVertexBufferObjectManager, pDrawTypeを用いて構築する。
+	 * 描画タイプとシェーダーを指定してSpriteオブジェクトを構築する。
+	 * バーテックスバッファはpVertexBufferObjectManagerからpDrawTypeで指定されたタイプで構築する。
+	 *
 	 *
 	 * @param pX x位置
 	 * @param pY y位置
@@ -180,12 +227,13 @@ public class Sprite extends Shape implements ISprite {
 				  final DrawType pDrawType, final ShaderProgram pShaderProgram) {
 
 		this(pX, pY, pWidth, pHeight, pTextureRegion,
-				new HighPerformanceSpriteVertexBufferObject(pVertexBufferObjectManager, Sprite.SPRITE_SIZE, pDrawType, true, Sprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT), pShaderProgram);
+				new HighPerformanceSpriteVertexBufferObject(pVertexBufferObjectManager, Sprite.SPRITE_SIZE,
+						pDrawType, true, Sprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT), pShaderProgram);
 	}
 
 	/**
-	 * コンストラクタ。
-	 * デフォルトのシェーダーを使用してオブジェクトを構築する。
+	 * バーテックスバッファを指定してSpriteオブジェクトを構築する。
+	 * シェーダーはデフォルトのものが使用される。
 	 *
 	 * @param pX X位置
 	 * @param pY Y位置
@@ -200,7 +248,7 @@ public class Sprite extends Shape implements ISprite {
 	}
 
 	/**
-	 * コンストラクタ
+	 * 使用するバーテックスバッファとシェーダープログラムを指定してSpriteオブジェクトを構築する。
 	 *
 	 * @param pX X位置
 	 * @param pY Y位置

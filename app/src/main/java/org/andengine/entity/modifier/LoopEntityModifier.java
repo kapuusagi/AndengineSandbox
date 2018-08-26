@@ -4,6 +4,11 @@ import org.andengine.entity.IEntity;
 import org.andengine.util.modifier.LoopModifier;
 
 /**
+ * 変更をループさせるためのモディファイア。
+ * 引数で渡したモディファイアが変更完了すると、再度変更開始時から再開する。
+ *
+ * 変更して戻す、を繰り返す場合には SequenceEntityModifierと組み合わせる。
+ *
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  *

@@ -21,7 +21,7 @@ import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlas;
 import org.andengine.opengl.texture.atlas.bitmap.BitmapTextureAtlasTextureRegionFactory;
 import org.andengine.opengl.texture.region.ITextureRegion;
 import org.andengine.ui.activity.SimpleBaseGameActivity;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 
 import android.opengl.GLES20;
 import android.view.KeyEvent;
@@ -159,11 +159,11 @@ public class TextMenuExample extends SimpleBaseGameActivity implements MenuScene
     protected MenuScene createMenuScene() {
         final MenuScene menuScene = new MenuScene(this.mCamera);
 
-        final IMenuItem resetMenuItem = new ColorMenuItemDecorator(new TextMenuItem(MENU_RESET, this.mFont, "RESET", this.getVertexBufferObjectManager()), new Color(1,0,0), new Color(0,0,0));
+        final IMenuItem resetMenuItem = new ColorMenuItemDecorator(new TextMenuItem(MENU_RESET, this.mFont, "RESET", this.getVertexBufferObjectManager()), new ColorF(1,0,0), new ColorF(0,0,0));
         resetMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         menuScene.addMenuItem(resetMenuItem);
 
-        final IMenuItem quitMenuItem = new ColorMenuItemDecorator(new TextMenuItem(MENU_QUIT, this.mFont, "QUIT", this.getVertexBufferObjectManager()), new Color(1,0,0), new Color(0,0,0));
+        final IMenuItem quitMenuItem = new ColorMenuItemDecorator(new TextMenuItem(MENU_QUIT, this.mFont, "QUIT", this.getVertexBufferObjectManager()), new ColorF(1,0,0), new ColorF(0,0,0));
         quitMenuItem.setBlendFunction(GLES20.GL_SRC_ALPHA, GLES20.GL_ONE_MINUS_SRC_ALPHA);
         menuScene.addMenuItem(quitMenuItem);
 

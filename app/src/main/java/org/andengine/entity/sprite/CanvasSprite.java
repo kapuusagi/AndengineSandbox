@@ -2,6 +2,7 @@ package org.andengine.entity.sprite;
 
 import android.graphics.Canvas;
 import android.opengl.GLES20;
+import android.support.annotation.NonNull;
 
 import org.andengine.engine.camera.Camera;
 import org.andengine.entity.shape.Shape;
@@ -24,9 +25,20 @@ import org.andengine.opengl.vbo.DrawType;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttributes;
 import org.andengine.opengl.vbo.attribute.VertexBufferObjectAttributesBuilder;
+import org.andengine.util.adt.color.ColorF;
 
 /**
- * IVectorPaintを使って描画するSprite。
+ * ICanvasPaintを使って描画するスプライト(Sprite)。
+ *
+ * Canvasでベクタ画像を書いてテクスチャにしたい場合などに使うユーティリティクラス。
+ * Andengineの元デザインでは、 IBtmapTextureAtlasSource インタフェースを介して
+ * 貼り付けるテクスチャイメージを生成する構造を推奨している。
+ * その場合、シーン側でテクスチャの管理をしなければいけなくなるため、
+ * 簡素化したものを用意した。
+ *
+ * このクラスはコンストラクタでテクスチャのロードを行うので、
+ * バックグラウンドで予めテクスチャを読み込むようなアーキテクチャには対応できない。
+ * バックグラウンドでの読み出しをやりたい場合にはIBitmapTextureAtlasSourceを使うようにすること。
  */
 public class CanvasSprite extends Shape implements ISprite {
     // ===========================================================
@@ -60,14 +72,16 @@ public class CanvasSprite extends Shape implements ISprite {
     private ISpriteVertexBufferObject mSpriteVertexBufferObject;
     // テクスチャ
     private BitmapTextureAtlas mBitmapTextureAtlas;
+    // 背景色
+    protected ColorF mBackgroundColorF;
 
     // ===========================================================
     // Constructors
     // ===========================================================
 
     /**
-     * コンストラクタ。
-     * vertexBufferObjectManagerからSTATICなバーテックスバッファを作成し、
+     * CanvasSpriteオブジェクトを構築する。
+     * vertexBufferObjectManagerからSTATICなバーテックスバッファを作成する。
      * シェーダーはデフォルトのものを使う。
      *
      * @param textureManager テクスチャマネージャ
@@ -75,18 +89,21 @@ public class CanvasSprite extends Shape implements ISprite {
      * @param y y位置
      * @param width 幅
      * @param height 高さ
-     * @param vectorPaint 描画オブジェクト
+     * @param canvasPaint 描画オブジェクト
+     * @param foregroundColor 前景色
+     * @param backgroundColor 背景色
      * @param vertexBufferObjectManager バーテックスバッファマネージャ
      */
     public CanvasSprite(final TextureManager textureManager, final float x, final float y, final float width, final float height,
-                        final ICanvasPaint vectorPaint, final VertexBufferObjectManager vertexBufferObjectManager) {
-        this(textureManager, x, y, width, height, vectorPaint,
+                        final ICanvasPaint canvasPaint, ColorF foregroundColor, ColorF backgroundColor,
+                        final VertexBufferObjectManager vertexBufferObjectManager) {
+        this(textureManager, x, y, width, height, canvasPaint, foregroundColor, backgroundColor,
                 new HighPerformanceSpriteVertexBufferObject(vertexBufferObjectManager, ISprite.SPRITE_SIZE, DrawType.STATIC, true, CanvasSprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT));
     }
 
     /**
-     * コンストラクタ
-     * vertexBufferObjectManager及びdrawTypeからバーテックスバッファを作成し、
+     * CanvasSpriteオブジェクトを構築する。
+     * vertexBufferObjectManagerからdrawTypeで指定するバーテックスバッファを作成する。
      * シェーダーはデフォルトのものを使う。
      *
      * @param textureManager テクスチャマネージャ
@@ -94,53 +111,64 @@ public class CanvasSprite extends Shape implements ISprite {
      * @param y y位置
      * @param width 幅
      * @param height 高さ
-     * @param vectorPaint 描画オブジェクト
+     * @param canvasPaint 描画オブジェクト
+     * @param foregroundColor 前景色
+     * @param backgroundColor 背景色
      * @param vertexBufferObjectManager  バーテックスバッファマネージャ
      * @param drawType 描画タイプ
      */
     public CanvasSprite(final TextureManager textureManager, final float x, final float y, final float width, final float height,
-                        final ICanvasPaint vectorPaint, final VertexBufferObjectManager vertexBufferObjectManager, final DrawType drawType) {
-        this(textureManager, x, y, width, height, vectorPaint,
+                        final ICanvasPaint canvasPaint, ColorF foregroundColor, ColorF backgroundColor,
+                        final VertexBufferObjectManager vertexBufferObjectManager, final DrawType drawType) {
+        this(textureManager, x, y, width, height, canvasPaint, foregroundColor, backgroundColor,
                 new HighPerformanceSpriteVertexBufferObject(vertexBufferObjectManager, ISprite.SPRITE_SIZE, drawType, true, CanvasSprite.VERTEXBUFFEROBJECTATTRIBUTES_DEFAULT));
     }
 
 
     /**
-     * コンストラクタ。
-     * デフォルトのシェーダーを使う。
+     * バーテックスバッファを指定してCanvasSpriteオブジェクトを構築する。
+     * シェーダーはデフォルトのものが使用される。
      *
      * @param textureManager テクスチャマネージャ
      * @param x x位置
      * @param y y位置
      * @param width 幅
      * @param height 高さ
-     * @param vectorPaint 描画オブジェクト
+     * @param canvasPaint 描画オブジェクト
+     * @param foregroundColor 前景色
+     * @param backgroundColor 背景色
      * @param vertexBuffer バーテックスバッファ
      */
     public CanvasSprite(final TextureManager textureManager, final float x, final float y, final float width, final float height,
-                        final ICanvasPaint vectorPaint, final ISpriteVertexBufferObject vertexBuffer) {
-        this(textureManager, x, y, width, height, vectorPaint, vertexBuffer, PositionColorTextureCoordinatesShaderProgram.getInstance());
+                        final ICanvasPaint canvasPaint, final ColorF foregroundColor, final ColorF backgroundColor,
+                        final ISpriteVertexBufferObject vertexBuffer) {
+        this(textureManager, x, y, width, height, canvasPaint, foregroundColor, backgroundColor,
+                vertexBuffer, PositionColorTextureCoordinatesShaderProgram.getInstance());
     }
 
     /**
-     * コンストラクタ
+     * バーテックスバッファとシェーダーを指定してCanvasSpriteを構築する。
      *
      * @param textureManager テクスチャマネージャ
      * @param x x位置
      * @param y y位置
      * @param width 幅
      * @param height 高さ
-     * @param vectorPaint 描画オブジェクト
+     * @param canvasPaint 描画オブジェクト
+     * @param foregroundColor 前景色
+     * @param backgroundColor 背景色
      * @param vertexBuffer バーテックスバッファ
      * @param shaderProgram シェーダープログラム
      */
     public CanvasSprite(final TextureManager textureManager, final float x, final float y, final float width, final float height,
-                        final ICanvasPaint vectorPaint,
+                        final ICanvasPaint canvasPaint, ColorF foregroundColor, ColorF backgroundColor,
                         final ISpriteVertexBufferObject vertexBuffer,
                         final ShaderProgram shaderProgram) {
         super(x, y, shaderProgram);
+        this.mColorF.set(foregroundColor);
+        this.mBackgroundColorF = backgroundColor;
 
-        this.mVectorPaint = vectorPaint;
+        this.mVectorPaint = canvasPaint;
         this.mBitmapTextureAtlas = new BitmapTextureAtlas(textureManager,
                 (int)(width), (int)(height), TextureOptions.BILINEAR);
 
@@ -148,7 +176,7 @@ public class CanvasSprite extends Shape implements ISprite {
                 = new EmptyBitmapTextureAtlasSource((int)(width), (int)(height));
         final IBitmapTextureAtlasSource decolatedTextureAtlasSource
                 = new DecolatedTextureAtlasSource(baseTextureAtlasSource, mVectorPaint);
-        this.mBitmapTextureAtlas.load();
+        this.mBitmapTextureAtlas.load(); // テクスチャの読み込み。重い。
         this.mTextureRegion = BitmapTextureAtlasTextureRegionFactory.createFromSource(
                 this.mBitmapTextureAtlas, decolatedTextureAtlasSource, 0, 0);
         this.mSpriteVertexBufferObject = vertexBuffer;
@@ -230,6 +258,33 @@ public class CanvasSprite extends Shape implements ISprite {
         }
     }
 
+    /**
+     * 背景色を設定する。
+     * @param color ARGB 32bitパッキングされた色データ
+     */
+    public void setBackgroundColor(int color) {
+        setBackgroundColor(ColorF.fromARGBPackedInt(color));
+    }
+
+    /**
+     * 背景色を設定する。
+     * @param colorF Colorオブジェクト
+     */
+    public void setBackgroundColor(ColorF colorF) {
+        if (colorF == null) {
+            throw new NullPointerException("setBackgroundColor accept null reference.");
+        }
+        if (mBackgroundColorF.equals(colorF)) {
+            return ;
+        }
+        mBackgroundColorF = colorF;
+        onUpdateColor();
+    }
+
+    public ColorF getBackgroundColor() {
+        return mBackgroundColorF;
+    }
+
     // ===========================================================
     // Methods for/from SuperClass/Interfaces
     // ===========================================================
@@ -280,8 +335,8 @@ public class CanvasSprite extends Shape implements ISprite {
 
     /**
      * 描画を行う。
-     * @param pGLState
-     * @param pCamera
+     * @param pGLState OpenGLオブジェクト
+     * @param pCamera カメラ
      */
     @Override
     protected void postDraw(final GLState pGLState, final Camera pCamera) {
@@ -299,22 +354,40 @@ public class CanvasSprite extends Shape implements ISprite {
     }
 
     /**
-     *
+     * 色が変更されたときに呼び出される。
      */
     @Override
     protected void onUpdateColor() {
+        // テクスチャの再読込をしたいなあ。
+        mBitmapTextureAtlas.load();
         this.mSpriteVertexBufferObject.onUpdateColor(this);
     }
 
+    // ===========================================================
+    // Methods
+    // ===========================================================
+
     /**
-     *
+     * テクスチャ座標を更新する。
      */
     protected void onUpdateTextureCoordinates() {
         this.mSpriteVertexBufferObject.onUpdateTextureCoordinates(this);
     }
-    // ===========================================================
-    // Methods
-    // ===========================================================
+
+    /**
+     * テクスチャを読み込む。
+     */
+    public void load() {
+        mBitmapTextureAtlas.load();
+        this.mSpriteVertexBufferObject.onUpdateColor(this);
+    }
+
+    /**
+     * テクスチャを解放する。
+     */
+    public void unload() {
+        mBitmapTextureAtlas.unload();
+    }
 
     // ===========================================================
     // Inner and Anonymous Classes
@@ -353,8 +426,7 @@ public class CanvasSprite extends Shape implements ISprite {
          */
         @Override
         protected void onDecorateBitmap(Canvas pCanvas) throws Exception {
-            mVectorPaint.draw(pCanvas, mPaint);
+            mVectorPaint.draw(pCanvas, mPaint, mColorF.getARGBPackedInt(), mBackgroundColorF.getARGBPackedInt());
         }
     }
-
 }

@@ -4,6 +4,8 @@ import org.andengine.entity.IEntity;
 import org.andengine.util.modifier.ModifierList;
 
 /**
+ * 複数のモディファイアをリストとして持つためのクラス。
+ *
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  *

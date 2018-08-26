@@ -11,7 +11,7 @@ import org.andengine.entity.shape.Shape;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.util.GLState;
 import org.andengine.util.Constants;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 import org.andengine.util.adt.list.SmartList;
 
 import android.util.SparseArray;
@@ -50,7 +50,7 @@ public class Scene extends Entity {
 
 	private IOnAreaTouchListener mOnAreaTouchListener;
 
-	private IBackground mBackground = new Background(Color.BLACK);
+	private IBackground mBackground = new Background(ColorF.BLACK);
 	private boolean mBackgroundEnabled = true;
 
 	private boolean mOnAreaTouchTraversalBackToFront = true;

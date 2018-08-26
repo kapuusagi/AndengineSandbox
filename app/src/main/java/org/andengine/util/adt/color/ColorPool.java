@@ -8,7 +8,7 @@ import org.andengine.util.adt.pool.GenericPool;
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 2:25:20 - 12.08.2011
  */
-public class ColorPool extends GenericPool<Color> {
+public class ColorPool extends GenericPool<ColorF> {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -30,15 +30,15 @@ public class ColorPool extends GenericPool<Color> {
 	// ===========================================================
 
 	@Override
-	protected Color onAllocatePoolItem() {
-		return new Color(Color.WHITE);
+	protected ColorF onAllocatePoolItem() {
+		return new ColorF(ColorF.WHITE);
 	}
 
 	@Override
-	protected void onHandleRecycleItem(final Color pColor) {
-		pColor.setChecking(Color.WHITE);
+	protected void onHandleRecycleItem(final ColorF pColorF) {
+		pColorF.setChecking(ColorF.WHITE);
 
-		super.onHandleRecycleItem(pColor);
+		super.onHandleRecycleItem(pColorF);
 	}
 
 	// ===========================================================

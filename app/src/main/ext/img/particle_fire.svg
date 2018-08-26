@@ -39,7 +39,7 @@
        inkscape:menu-tooltip="In and out glow with a possible offset and colorizable flood"
        inkscape:menu="Shadows and Glows"
        inkscape:label="Cutout Glow"
-       color-interpolation-filters="sRGB">
+       colorF-interpolation-filters="sRGB">
       <feOffset
          id="feOffset3830"
          dy="3"
@@ -50,7 +50,7 @@
          stdDeviation="3" />
       <feFlood
          id="feFlood3834"
-         flood-color="rgb(0,0,0)"
+         flood-colorF="rgb(0,0,0)"
          flood-opacity="1"
          in="result8"
          result="result10" />
@@ -91,7 +91,7 @@
        inkscape:label="Fuzzy Glow"
        inkscape:menu="Shadows and Glows"
        inkscape:menu-tooltip="Overlays a semi-transparent shifted copy to a blurred one"
-       color-interpolation-filters="sRGB">
+       colorF-interpolation-filters="sRGB">
       <feGaussianBlur
          id="feGaussianBlur3886"
          stdDeviation="5"

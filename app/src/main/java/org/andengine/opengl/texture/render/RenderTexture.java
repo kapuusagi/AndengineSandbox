@@ -13,7 +13,7 @@ import org.andengine.opengl.texture.TextureManager;
 import org.andengine.opengl.texture.TextureOptions;
 import org.andengine.opengl.util.GLHelper;
 import org.andengine.opengl.util.GLState;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
@@ -170,10 +170,10 @@ public class RenderTexture extends Texture {
 	 * @see {@link #end(GLState)},
 	 * 		{@link #end(GLState, boolean, boolean}}.
 	 *
-	 * @param pColor the {@link Color} to clear this {@link RenderTexture}.
+	 * @param pColorF the {@link ColorF } to clear this {@link RenderTexture}.
 	 */
-	public void begin(final GLState pGLState, final Color pColor) {
-		this.begin(pGLState, pColor.getRed(), pColor.getGreen(), pColor.getBlue(), pColor.getAlpha());
+	public void begin(final GLState pGLState, final ColorF pColorF) {
+		this.begin(pGLState, pColorF.getRed(), pColorF.getGreen(), pColorF.getBlue(), pColorF.getAlpha());
 	}
 
 	/**
@@ -193,10 +193,10 @@ public class RenderTexture extends Texture {
 	 * @see {@link #end(GLState)},
 	 * 		{@link #end(GLState, boolean, boolean}}.
 	 *
-	 * @param pColor the {@link Color} to clear this {@link RenderTexture}.
+	 * @param pColorF the {@link ColorF } to clear this {@link RenderTexture}.
 	 */
-	public void begin(final GLState pGLState, final boolean pFlipX, final boolean pFlipY, final Color pColor) {
-		this.begin(pGLState, pFlipX, pFlipY, pColor.getRed(), pColor.getGreen(), pColor.getBlue(), pColor.getAlpha());
+	public void begin(final GLState pGLState, final boolean pFlipX, final boolean pFlipY, final ColorF pColorF) {
+		this.begin(pGLState, pFlipX, pFlipY, pColorF.getRed(), pColorF.getGreen(), pColorF.getBlue(), pColorF.getAlpha());
 	}
 
 	/**
@@ -275,9 +275,9 @@ public class RenderTexture extends Texture {
 	/**
 	 * @see {@link #begin(GLState)},
 	 * 		{@link #begin(GLState, boolean, boolean)},
-	 * 		{@link #begin(GLState, Color)},
+	 * 		{@link #begin(GLState, ColorF)},
 	 * 		{@link #begin(GLState, float, float, float, float)},
-	 * 		{@link #begin(GLState, boolean, boolean, Color)}.
+	 * 		{@link #begin(GLState, boolean, boolean, ColorF)}.
 	 * 		{@link #begin(GLState, boolean, boolean, float, float, float, float)}.
 	 */
 	public void end(final GLState pGLState) {
@@ -291,9 +291,9 @@ public class RenderTexture extends Texture {
 	 *
 	 * @see {@link #begin(GLState)},
 	 * 		{@link #begin(GLState, boolean, boolean)},
-	 * 		{@link #begin(GLState, Color)},
+	 * 		{@link #begin(GLState, ColorF)},
 	 * 		{@link #begin(GLState, float, float, float, float)},
-	 * 		{@link #begin(GLState, boolean, boolean, Color)}.
+	 * 		{@link #begin(GLState, boolean, boolean, ColorF)}.
 	 * 		{@link #begin(GLState, boolean, boolean, float, float, float, float)}.
 	 */
 	public void end(final GLState pGLState, final boolean pFlush, final boolean pFinish) {

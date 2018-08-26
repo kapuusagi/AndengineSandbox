@@ -1,12 +1,17 @@
 package org.andengine.util.adt.color;
 
+
 /**
+ * Andengine用のカラークラス。
+ * 色データは0.0～1.0の範囲に正規化されたものを扱う。
+ * 古いAPIではAndroid標準のColorクラスが微妙であったため、専用のクラスを定義したようだ。
+ *
  * (c) 2011 Zynga Inc.
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
  * @since 02:23:08 - 12.08.2011
  */
-public class Color {
+public class ColorF {
 	// ===========================================================
 	// Constants
 	// ===========================================================
@@ -31,45 +36,45 @@ public class Color {
 	public static final int ARGB_PACKED_RED_CLEAR = 0XFF00FFFF;
 	public static final int ARGB_PACKED_ALPHA_CLEAR = 0X00FFFFFF;
 
-	public static final Color WHITE = new Color(1, 1, 1, 1);
-	public static final Color BLACK = new Color(0, 0, 0, 1);
-	public static final Color RED = new Color(1, 0, 0, 1);
-	public static final Color YELLOW = new Color(1, 1, 0, 1);
-	public static final Color GREEN = new Color(0, 1, 0, 1);
-	public static final Color CYAN = new Color(0, 1, 1, 1);
-	public static final Color BLUE = new Color(0, 0, 1, 1);
-	public static final Color PINK = new Color(1, 0, 1, 1);
-	public static final Color TRANSPARENT = new Color(0, 0, 0, 0);
+	public static final ColorF WHITE = new ColorF(1, 1, 1, 1);
+	public static final ColorF BLACK = new ColorF(0, 0, 0, 1);
+	public static final ColorF RED = new ColorF(1, 0, 0, 1);
+	public static final ColorF YELLOW = new ColorF(1, 1, 0, 1);
+	public static final ColorF GREEN = new ColorF(0, 1, 0, 1);
+	public static final ColorF CYAN = new ColorF(0, 1, 1, 1);
+	public static final ColorF BLUE = new ColorF(0, 0, 1, 1);
+	public static final ColorF PINK = new ColorF(1, 0, 1, 1);
+	public static final ColorF TRANSPARENT = new ColorF(0, 0, 0, 0);
 
-	public static final int WHITE_ABGR_PACKED_INT = Color.WHITE.getABGRPackedInt();
-	public static final int BLACK_ABGR_PACKED_INT = Color.BLACK.getABGRPackedInt();
-	public static final int RED_ABGR_PACKED_INT = Color.RED.getABGRPackedInt();
-	public static final int YELLOW_ABGR_PACKED_INT = Color.YELLOW.getABGRPackedInt();
-	public static final int GREEN_ABGR_PACKED_INT = Color.GREEN.getABGRPackedInt();
-	public static final int CYAN_ABGR_PACKED_INT = Color.CYAN.getABGRPackedInt();
-	public static final int BLUE_ABGR_PACKED_INT = Color.BLUE.getABGRPackedInt();
-	public static final int PINK_ABGR_PACKED_INT = Color.PINK.getABGRPackedInt();
-	public static final int TRANSPARENT_ABGR_PACKED_INT = Color.TRANSPARENT.getABGRPackedInt();
+	public static final int WHITE_ABGR_PACKED_INT = ColorF.WHITE.getABGRPackedInt();
+	public static final int BLACK_ABGR_PACKED_INT = ColorF.BLACK.getABGRPackedInt();
+	public static final int RED_ABGR_PACKED_INT = ColorF.RED.getABGRPackedInt();
+	public static final int YELLOW_ABGR_PACKED_INT = ColorF.YELLOW.getABGRPackedInt();
+	public static final int GREEN_ABGR_PACKED_INT = ColorF.GREEN.getABGRPackedInt();
+	public static final int CYAN_ABGR_PACKED_INT = ColorF.CYAN.getABGRPackedInt();
+	public static final int BLUE_ABGR_PACKED_INT = ColorF.BLUE.getABGRPackedInt();
+	public static final int PINK_ABGR_PACKED_INT = ColorF.PINK.getABGRPackedInt();
+	public static final int TRANSPARENT_ABGR_PACKED_INT = ColorF.TRANSPARENT.getABGRPackedInt();
 
-	public static final float WHITE_ABGR_PACKED_FLOAT = Color.WHITE.getABGRPackedFloat();
-	public static final float BLACK_ABGR_PACKED_FLOAT = Color.BLACK.getABGRPackedFloat();
-	public static final float RED_ABGR_PACKED_FLOAT = Color.RED.getABGRPackedFloat();
-	public static final float YELLOW_ABGR_PACKED_FLOAT = Color.YELLOW.getABGRPackedFloat();
-	public static final float GREEN_ABGR_PACKED_FLOAT = Color.GREEN.getABGRPackedFloat();
-	public static final float CYAN_ABGR_PACKED_FLOAT = Color.CYAN.getABGRPackedFloat();
-	public static final float BLUE_ABGR_PACKED_FLOAT = Color.BLUE.getABGRPackedFloat();
-	public static final float PINK_ABGR_PACKED_FLOAT = Color.PINK.getABGRPackedFloat();
-	public static final float TRANSPARENT_ABGR_PACKED_FLOAT = Color.TRANSPARENT.getABGRPackedFloat();
+	public static final float WHITE_ABGR_PACKED_FLOAT = ColorF.WHITE.getABGRPackedFloat();
+	public static final float BLACK_ABGR_PACKED_FLOAT = ColorF.BLACK.getABGRPackedFloat();
+	public static final float RED_ABGR_PACKED_FLOAT = ColorF.RED.getABGRPackedFloat();
+	public static final float YELLOW_ABGR_PACKED_FLOAT = ColorF.YELLOW.getABGRPackedFloat();
+	public static final float GREEN_ABGR_PACKED_FLOAT = ColorF.GREEN.getABGRPackedFloat();
+	public static final float CYAN_ABGR_PACKED_FLOAT = ColorF.CYAN.getABGRPackedFloat();
+	public static final float BLUE_ABGR_PACKED_FLOAT = ColorF.BLUE.getABGRPackedFloat();
+	public static final float PINK_ABGR_PACKED_FLOAT = ColorF.PINK.getABGRPackedFloat();
+	public static final float TRANSPARENT_ABGR_PACKED_FLOAT = ColorF.TRANSPARENT.getABGRPackedFloat();
 
-	public static final int WHITE_ARGB_PACKED_INT = Color.WHITE.getARGBPackedInt();
-	public static final int BLACK_ARGB_PACKED_INT = Color.BLACK.getARGBPackedInt();
-	public static final int RED_ARGB_PACKED_INT = Color.RED.getARGBPackedInt();
-	public static final int YELLOW_ARGB_PACKED_INT = Color.YELLOW.getARGBPackedInt();
-	public static final int GREEN_ARGB_PACKED_INT = Color.GREEN.getARGBPackedInt();
-	public static final int CYAN_ARGB_PACKED_INT = Color.CYAN.getARGBPackedInt();
-	public static final int BLUE_ARGB_PACKED_INT = Color.BLUE.getARGBPackedInt();
-	public static final int PINK_ARGB_PACKED_INT = Color.PINK.getARGBPackedInt();
-	public static final int TRANSPARENT_ARGB_PACKED_INT = Color.TRANSPARENT.getARGBPackedInt();
+	public static final int WHITE_ARGB_PACKED_INT = ColorF.WHITE.getARGBPackedInt();
+	public static final int BLACK_ARGB_PACKED_INT = ColorF.BLACK.getARGBPackedInt();
+	public static final int RED_ARGB_PACKED_INT = ColorF.RED.getARGBPackedInt();
+	public static final int YELLOW_ARGB_PACKED_INT = ColorF.YELLOW.getARGBPackedInt();
+	public static final int GREEN_ARGB_PACKED_INT = ColorF.GREEN.getARGBPackedInt();
+	public static final int CYAN_ARGB_PACKED_INT = ColorF.CYAN.getARGBPackedInt();
+	public static final int BLUE_ARGB_PACKED_INT = ColorF.BLUE.getARGBPackedInt();
+	public static final int PINK_ARGB_PACKED_INT = ColorF.PINK.getARGBPackedInt();
+	public static final int TRANSPARENT_ARGB_PACKED_INT = ColorF.TRANSPARENT.getARGBPackedInt();
 
 	// ===========================================================
 	// Fields
@@ -87,19 +92,29 @@ public class Color {
 	// Constructors
 	// ===========================================================
 
-	/* package */ Color() {
+	/* package */ ColorF() {
 
 	}
 
-	public Color(final Color pColor) {
-		this.set(pColor);
+	/**
+	 * 指定した色でColorFオブジェクトを構築する。
+	 * @param pColorF
+	 */
+	public ColorF(final ColorF pColorF) {
+		this.set(pColorF);
 	}
 
-	public Color(final float pRed, final float pGreen, final float pBlue) {
+	/**
+	 *
+	 * @param pRed
+	 * @param pGreen
+	 * @param pBlue
+	 */
+	public ColorF(final float pRed, final float pGreen, final float pBlue) {
 		this(pRed, pGreen, pBlue, 1);
 	}
 
-	public Color(final float pRed, final float pGreen, final float pBlue, final float pAlpha) {
+	public ColorF(final float pRed, final float pGreen, final float pBlue, final float pAlpha) {
 		this.set(pRed, pGreen, pBlue, pAlpha);
 	}
 
@@ -229,25 +244,25 @@ public class Color {
 		return false;
 	}
 
-	public final void set(final Color pColor) {
-		this.mRed = pColor.mRed;
-		this.mGreen = pColor.mGreen;
-		this.mBlue = pColor.mBlue;
-		this.mAlpha = pColor.mAlpha;
+	public final void set(final ColorF pColorF) {
+		this.mRed = pColorF.mRed;
+		this.mGreen = pColorF.mGreen;
+		this.mBlue = pColorF.mBlue;
+		this.mAlpha = pColorF.mAlpha;
 
-		this.mABGRPackedInt = pColor.mABGRPackedInt;
-		this.mABGRPackedFloat = pColor.mABGRPackedFloat;
+		this.mABGRPackedInt = pColorF.mABGRPackedInt;
+		this.mABGRPackedFloat = pColorF.mABGRPackedFloat;
 	}
 
-	public final boolean setChecking(final Color pColor) {
-		if (this.mABGRPackedInt != pColor.mABGRPackedInt) {
-			this.mRed = pColor.mRed;
-			this.mGreen = pColor.mGreen;
-			this.mBlue = pColor.mBlue;
-			this.mAlpha = pColor.mAlpha;
+	public final boolean setChecking(final ColorF pColorF) {
+		if (this.mABGRPackedInt != pColorF.mABGRPackedInt) {
+			this.mRed = pColorF.mRed;
+			this.mGreen = pColorF.mGreen;
+			this.mBlue = pColorF.mBlue;
+			this.mAlpha = pColorF.mAlpha;
 
-			this.mABGRPackedInt = pColor.mABGRPackedInt;
-			this.mABGRPackedFloat = pColor.mABGRPackedFloat;
+			this.mABGRPackedInt = pColorF.mABGRPackedInt;
+			this.mABGRPackedFloat = pColorF.mABGRPackedFloat;
 			return true;
 		}
 		return false;
@@ -269,7 +284,7 @@ public class Color {
 	}
 
 	public final void reset() {
-		this.set(Color.WHITE);
+		this.set(ColorF.WHITE);
 	}
 
 	// ===========================================================
@@ -291,7 +306,7 @@ public class Color {
 			return false;
 		}
 
-		return this.equals((Color) pObject);
+		return this.equals((ColorF) pObject);
 	}
 
 	@Override
@@ -313,27 +328,27 @@ public class Color {
 	// Methods
 	// ===========================================================
 
-	public boolean equals(final Color pColor) {
-		return this.mABGRPackedInt == pColor.mABGRPackedInt;
+	public boolean equals(final ColorF pColorF) {
+		return this.mABGRPackedInt == pColorF.mABGRPackedInt;
 	}
 
 	private final void packABGRRed() {
-		this.mABGRPackedInt = (this.mABGRPackedInt & Color.ABGR_PACKED_RED_CLEAR) | ((int)(255 * this.mRed) << Color.ABGR_PACKED_RED_CLEAR);
+		this.mABGRPackedInt = (this.mABGRPackedInt & ColorF.ABGR_PACKED_RED_CLEAR) | ((int)(255 * this.mRed) << ColorF.ABGR_PACKED_RED_CLEAR);
 		this.mABGRPackedFloat = ColorUtils.convertPackedIntToPackedFloat(this.mABGRPackedInt);
 	}
 
 	private final void packABGRGreen() {
-		this.mABGRPackedInt = (this.mABGRPackedInt & Color.ABGR_PACKED_GREEN_CLEAR) | ((int)(255 * this.mGreen) << Color.ABGR_PACKED_GREEN_CLEAR);
+		this.mABGRPackedInt = (this.mABGRPackedInt & ColorF.ABGR_PACKED_GREEN_CLEAR) | ((int)(255 * this.mGreen) << ColorF.ABGR_PACKED_GREEN_CLEAR);
 		this.mABGRPackedFloat = ColorUtils.convertPackedIntToPackedFloat(this.mABGRPackedInt);
 	}
 
 	private final void packABGRBlue() {
-		this.mABGRPackedInt = (this.mABGRPackedInt & Color.ABGR_PACKED_BLUE_CLEAR) | ((int)(255 * this.mBlue) << Color.ABGR_PACKED_BLUE_CLEAR);
+		this.mABGRPackedInt = (this.mABGRPackedInt & ColorF.ABGR_PACKED_BLUE_CLEAR) | ((int)(255 * this.mBlue) << ColorF.ABGR_PACKED_BLUE_CLEAR);
 		this.mABGRPackedFloat = ColorUtils.convertPackedIntToPackedFloat(this.mABGRPackedInt);
 	}
 
 	private final void packABGRAlpha() {
-		this.mABGRPackedInt = (this.mABGRPackedInt & Color.ABGR_PACKED_ALPHA_CLEAR) | ((int)(255 * this.mAlpha) << Color.ABGR_PACKED_ALPHA_SHIFT);
+		this.mABGRPackedInt = (this.mABGRPackedInt & ColorF.ABGR_PACKED_ALPHA_CLEAR) | ((int)(255 * this.mAlpha) << ColorF.ABGR_PACKED_ALPHA_SHIFT);
 		this.mABGRPackedFloat = ColorUtils.convertPackedIntToPackedFloat(this.mABGRPackedInt);
 	}
 
@@ -342,13 +357,39 @@ public class Color {
 		this.mABGRPackedFloat = ColorUtils.convertPackedIntToPackedFloat(this.mABGRPackedInt);
 	}
 
-	public final void mix(final Color pColorA, final float pPercentageA, final Color pColorB, final float pPercentageB) {
-		final float red = (pColorA.mRed * pPercentageA) + (pColorB.mRed * pPercentageB);
-		final float green = (pColorA.mGreen * pPercentageA) + (pColorB.mGreen * pPercentageB);
-		final float blue = (pColorA.mBlue * pPercentageA) + (pColorB.mBlue * pPercentageB);
-		final float alpha = (pColorA.mAlpha * pPercentageA) + (pColorB.mAlpha * pPercentageB);
+	public final void mix(final ColorF pColorFA, final float pPercentageA, final ColorF pColorFB, final float pPercentageB) {
+		final float red = (pColorFA.mRed * pPercentageA) + (pColorFB.mRed * pPercentageB);
+		final float green = (pColorFA.mGreen * pPercentageA) + (pColorFB.mGreen * pPercentageB);
+		final float blue = (pColorFA.mBlue * pPercentageA) + (pColorFB.mBlue * pPercentageB);
+		final float alpha = (pColorFA.mAlpha * pPercentageA) + (pColorFB.mAlpha * pPercentageB);
 
 		this.set(red, green, blue, alpha);
+	}
+
+	/**
+	 * 32bitパックされたABGR値からColorオブジェクトを構築する。
+	 * @param argb ARGB 32ビット値
+	 * @return Colorオブジェクトが返る。
+	 */
+	public static ColorF fromARGBPackedInt(int argb) {
+		float a = ((argb >> ARGB_PACKED_ALPHA_SHIFT) & 0xff) / 255.0f;
+		float r = ((argb >> ARGB_PACKED_RED_SHIFT) & 0xff) / 255.0f;
+		float g = ((argb >> ARGB_PACKED_GREEN_SHIFT) & 0xff) / 255.0f;
+		float b = ((argb >> ARGB_PACKED_BLUE_SHIFT) & 0xff) / 255.0f;
+		return new ColorF(r, g, b, a);
+	}
+
+	/**
+	 * 32bitパックされたABGR値からColorオブジェクトを構築する。
+	 * @param abgr ABGR 32ビット値
+	 * @return Colorオブジェクトが返る。
+	 */
+	public static ColorF fromABGRPackedInt(int abgr) {
+		float a = ((abgr >> ABGR_PACKED_ALPHA_SHIFT) & 0xff) / 255.0f;
+		float b = ((abgr >> ABGR_PACKED_BLUE_SHIFT) & 0xff) / 255.0f;
+		float g = ((abgr >> ABGR_PACKED_GREEN_SHIFT) & 0xff) / 255.0f;
+		float r = ((abgr >> ABGR_PACKED_RED_SHIFT) & 0xff) / 255.0f;
+		return new ColorF(r, g, b, a);
 	}
 
 	// ===========================================================

@@ -36,31 +36,31 @@
       <stop
          id="stop3236"
          offset="0"
-         style="stop-color: rgb(199, 199, 199); stop-opacity: 0.654088;" />
+         style="stop-colorF: rgb(199, 199, 199); stop-opacity: 0.654088;" />
       <stop
          id="stop3238"
          offset="1"
-         style="stop-color: rgb(255, 255, 255); stop-opacity: 0;" />
+         style="stop-colorF: rgb(255, 255, 255); stop-opacity: 0;" />
     </linearGradient>
     <linearGradient
        id="linearGradient3215">
       <stop
-         style="stop-color: rgb(26, 26, 26); stop-opacity: 0.685535;"
+         style="stop-colorF: rgb(26, 26, 26); stop-opacity: 0.685535;"
          offset="0"
          id="stop3217" />
       <stop
-         style="stop-color: rgb(26, 26, 26); stop-opacity: 0;"
+         style="stop-colorF: rgb(26, 26, 26); stop-opacity: 0;"
          offset="1"
          id="stop3219" />
     </linearGradient>
     <linearGradient
        id="linearGradient3203">
       <stop
-         style="stop-color: rgb(249, 249, 249); stop-opacity: 0.528302;"
+         style="stop-colorF: rgb(249, 249, 249); stop-opacity: 0.528302;"
          offset="0"
          id="stop3205" />
       <stop
-         style="stop-color: rgb(115, 115, 115); stop-opacity: 0.446541;"
+         style="stop-colorF: rgb(115, 115, 115); stop-opacity: 0.446541;"
          offset="1"
          id="stop3207" />
     </linearGradient>
@@ -177,7 +177,7 @@
        y="-0.2042646"
        height="1.4085292"
        id="filter3829"
-       color-interpolation-filters="sRGB">
+       colorF-interpolation-filters="sRGB">
       <feGaussianBlur
          inkscape:collect="always"
          stdDeviation="5.0271793"
@@ -310,11 +310,11 @@
     <linearGradient
        id="linearGradient3215-7">
       <stop
-         style="stop-color: rgb(26, 26, 26); stop-opacity: 0.685535;"
+         style="stop-colorF: rgb(26, 26, 26); stop-opacity: 0.685535;"
          offset="0"
          id="stop3217-4" />
       <stop
-         style="stop-color: rgb(26, 26, 26); stop-opacity: 0;"
+         style="stop-colorF: rgb(26, 26, 26); stop-opacity: 0;"
          offset="1"
          id="stop3219-0" />
     </linearGradient>
@@ -334,11 +334,11 @@
       <stop
          id="stop3236-8"
          offset="0"
-         style="stop-color: rgb(199, 199, 199); stop-opacity: 0.654088;" />
+         style="stop-colorF: rgb(199, 199, 199); stop-opacity: 0.654088;" />
       <stop
          id="stop3238-8"
          offset="1"
-         style="stop-color: rgb(255, 255, 255); stop-opacity: 0;" />
+         style="stop-colorF: rgb(255, 255, 255); stop-opacity: 0;" />
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
@@ -352,11 +352,11 @@
     <linearGradient
        id="linearGradient3203-4">
       <stop
-         style="stop-color: rgb(249, 249, 249); stop-opacity: 0.528302;"
+         style="stop-colorF: rgb(249, 249, 249); stop-opacity: 0.528302;"
          offset="0"
          id="stop3205-5" />
       <stop
-         style="stop-color: rgb(115, 115, 115); stop-opacity: 0.446541;"
+         style="stop-colorF: rgb(115, 115, 115); stop-opacity: 0.446541;"
          offset="1"
          id="stop3207-5" />
     </linearGradient>
@@ -376,11 +376,11 @@
       <stop
          id="stop2879"
          offset="0"
-         style="stop-color: rgb(199, 199, 199); stop-opacity: 0.654088;" />
+         style="stop-colorF: rgb(199, 199, 199); stop-opacity: 0.654088;" />
       <stop
          id="stop2881"
          offset="1"
-         style="stop-color: rgb(255, 255, 255); stop-opacity: 0;" />
+         style="stop-colorF: rgb(255, 255, 255); stop-opacity: 0;" />
     </linearGradient>
     <radialGradient
        inkscape:collect="always"
@@ -396,11 +396,11 @@
     <linearGradient
        id="linearGradient2884">
       <stop
-         style="stop-color: rgb(26, 26, 26); stop-opacity: 0.685535;"
+         style="stop-colorF: rgb(26, 26, 26); stop-opacity: 0.685535;"
          offset="0"
          id="stop2886" />
       <stop
-         style="stop-color: rgb(26, 26, 26); stop-opacity: 0;"
+         style="stop-colorF: rgb(26, 26, 26); stop-opacity: 0;"
          offset="1"
          id="stop2888" />
     </linearGradient>

@@ -1,7 +1,7 @@
 package org.andengine.opengl.texture.atlas.bitmap.source;
 
 import org.andengine.opengl.util.GLHelper;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 import org.andengine.util.debug.Debug;
 
 import android.graphics.Bitmap;
@@ -33,16 +33,16 @@ public class ColorSwapBitmapTextureAtlasSource extends BaseBitmapTextureAtlasSou
 	// Constructors
 	// ===========================================================
 
-	public ColorSwapBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final Color pColorKeyColor, final Color pColorSwapColor) {
-		this(pBitmapTextureAtlasSource, pColorKeyColor.getARGBPackedInt(), pColorSwapColor.getARGBPackedInt());
+	public ColorSwapBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final ColorF pColorKeyColorF, final ColorF pColorSwapColorF) {
+		this(pBitmapTextureAtlasSource, pColorKeyColorF.getARGBPackedInt(), pColorSwapColorF.getARGBPackedInt());
 	}
 
 	public ColorSwapBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final int pColorKeyColorARGBPackedInt, final int pColorSwapColorARGBPackedInt) {
 		this(pBitmapTextureAtlasSource, pColorKeyColorARGBPackedInt, ColorSwapBitmapTextureAtlasSource.TOLERANCE_DEFAULT, pColorSwapColorARGBPackedInt);
 	}
 
-	public ColorSwapBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final Color pColorKeyColor, final int pTolerance, final Color pColorSwapColor) {
-		this(pBitmapTextureAtlasSource, pColorKeyColor.getARGBPackedInt(), pTolerance, pColorSwapColor.getARGBPackedInt());
+	public ColorSwapBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final ColorF pColorKeyColorF, final int pTolerance, final ColorF pColorSwapColorF) {
+		this(pBitmapTextureAtlasSource, pColorKeyColorF.getARGBPackedInt(), pTolerance, pColorSwapColorF.getARGBPackedInt());
 	}
 
 	public ColorSwapBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final int pColorKeyColorARGBPackedInt, final int pTolerance, final int pColorSwapColorARGBPackedInt) {
@@ -95,21 +95,21 @@ public class ColorSwapBitmapTextureAtlasSource extends BaseBitmapTextureAtlasSou
 		final int[] pixelsARGB_8888 = GLHelper.getPixelsARGB_8888(pBitmap);
 		pBitmap.recycle();
 
-		final int keyRed = (pColorKeyColorARGBPackedInt >> Color.ARGB_PACKED_RED_SHIFT) & 0xFF;
-		final int keyGreen = (pColorKeyColorARGBPackedInt >> Color.ARGB_PACKED_GREEN_SHIFT) & 0xFF;
-		final int keyBlue = (pColorKeyColorARGBPackedInt >> Color.ARGB_PACKED_BLUE_SHIFT) & 0xFF;
-		final int keyAlpha = (pColorKeyColorARGBPackedInt >> Color.ARGB_PACKED_ALPHA_SHIFT) & 0xFF;
+		final int keyRed = (pColorKeyColorARGBPackedInt >> ColorF.ARGB_PACKED_RED_SHIFT) & 0xFF;
+		final int keyGreen = (pColorKeyColorARGBPackedInt >> ColorF.ARGB_PACKED_GREEN_SHIFT) & 0xFF;
+		final int keyBlue = (pColorKeyColorARGBPackedInt >> ColorF.ARGB_PACKED_BLUE_SHIFT) & 0xFF;
+		final int keyAlpha = (pColorKeyColorARGBPackedInt >> ColorF.ARGB_PACKED_ALPHA_SHIFT) & 0xFF;
 
 		for (int i = pixelsARGB_8888.length - 1; i >= 0; i--) {
 			final int pixelARGB_8888 = pixelsARGB_8888[i];
 
-			final int red = (pixelARGB_8888 >> Color.ARGB_PACKED_RED_SHIFT) & 0xFF;
+			final int red = (pixelARGB_8888 >> ColorF.ARGB_PACKED_RED_SHIFT) & 0xFF;
 			if (Math.abs(red - keyRed) <= pTolerance) {
-				final int green = (pixelARGB_8888 >> Color.ARGB_PACKED_GREEN_SHIFT) & 0xFF;
+				final int green = (pixelARGB_8888 >> ColorF.ARGB_PACKED_GREEN_SHIFT) & 0xFF;
 				if (Math.abs(green - keyGreen) <= pTolerance) {
-					final int blue = (pixelARGB_8888 >> Color.ARGB_PACKED_BLUE_SHIFT) & 0xFF;
+					final int blue = (pixelARGB_8888 >> ColorF.ARGB_PACKED_BLUE_SHIFT) & 0xFF;
 					if (Math.abs(blue - keyBlue) <= pTolerance) {
-						final int alpha = (pixelARGB_8888 >> Color.ARGB_PACKED_ALPHA_SHIFT) & 0xFF;
+						final int alpha = (pixelARGB_8888 >> ColorF.ARGB_PACKED_ALPHA_SHIFT) & 0xFF;
 						if (Math.abs(alpha - keyAlpha) <= pTolerance) {
 							pixelsARGB_8888[i] = pColorSwapColorARGBPackedInt;
 						}

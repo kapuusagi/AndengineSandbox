@@ -11,6 +11,8 @@ public interface ICanvasPaint {
      * 描画を行う。
      * @param canvas キャンバスオブジェクト
      * @param paint 描画オブジェクト
+     * @param foregroundColor 前景色
+     * @param backgroundColor 背景色
      */
-    void draw(Canvas canvas, Paint paint);
+    void draw(Canvas canvas, Paint paint, int foregroundColor, int backgroundColor);
 }

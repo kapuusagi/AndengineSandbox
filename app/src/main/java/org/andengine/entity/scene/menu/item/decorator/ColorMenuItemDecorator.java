@@ -1,7 +1,7 @@
 package org.andengine.entity.scene.menu.item.decorator;
 
 import org.andengine.entity.scene.menu.item.IMenuItem;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 
 /**
  * (c) 2010 Nicolas Gramlich
@@ -19,20 +19,20 @@ public class ColorMenuItemDecorator extends BaseMenuItemDecorator {
 	// Fields
 	// ===========================================================
 
-	private final Color mSelectedColor;
-	private final Color mUnselectedColor;
+	private final ColorF mSelectedColorF;
+	private final ColorF mUnselectedColorF;
 
 	// ===========================================================
 	// Constructors
 	// ===========================================================
 
-	public ColorMenuItemDecorator(final IMenuItem pMenuItem, final Color pSelectedColor, final Color pUnselectedColor) {
+	public ColorMenuItemDecorator(final IMenuItem pMenuItem, final ColorF pSelectedColorF, final ColorF pUnselectedColorF) {
 		super(pMenuItem);
 
-		this.mSelectedColor = pSelectedColor;
-		this.mUnselectedColor = pUnselectedColor;
+		this.mSelectedColorF = pSelectedColorF;
+		this.mUnselectedColorF = pUnselectedColorF;
 
-		pMenuItem.setColor(pUnselectedColor);
+		pMenuItem.setColor(pUnselectedColorF);
 	}
 
 	// ===========================================================
@@ -49,17 +49,17 @@ public class ColorMenuItemDecorator extends BaseMenuItemDecorator {
 
 	@Override
 	public void onMenuItemSelected(final IMenuItem pMenuItem) {
-		pMenuItem.setColor(this.mSelectedColor);
+		pMenuItem.setColor(this.mSelectedColorF);
 	}
 
 	@Override
 	public void onMenuItemUnselected(final IMenuItem pMenuItem) {
-		pMenuItem.setColor(this.mUnselectedColor);
+		pMenuItem.setColor(this.mUnselectedColorF);
 	}
 
 	@Override
 	public void onMenuItemReset(final IMenuItem pMenuItem) {
-		pMenuItem.setColor(this.mUnselectedColor);
+		pMenuItem.setColor(this.mUnselectedColorF);
 	}
 
 	// ===========================================================

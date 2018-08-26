@@ -42,9 +42,6 @@ public class Menu extends Entity {
     // 枠のスプライト
     private Sprite mFrameSprite;
 
-
-
-
     /**
      * コンストラクタ
      * @param x X位置
@@ -140,8 +137,6 @@ public class Menu extends Entity {
     protected void updateMenuPosition() {
         mFrameSprite.setPosition(0,0);
         mFrameSprite.setSize(getWidth(), getHeight());
-
-
 
     }
 }

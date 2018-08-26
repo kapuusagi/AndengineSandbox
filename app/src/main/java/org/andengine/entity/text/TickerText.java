@@ -10,6 +10,9 @@ import org.andengine.util.adt.align.HorizontalAlign;
 import android.opengl.GLES20;
 
 /**
+ * 1文字ずつ表示するようなテキストエンティティ。
+ * キャラクターの台詞表示などに使える。
+ *
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  *
@@ -36,7 +39,8 @@ public class TickerText extends Text {
 	// Constructors
 	// ===========================================================
 
-	public TickerText(final float pX, final float pY, final IFont pFont, final String pText, final TickerTextOptions pTickerTextOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
+	public TickerText(final float pX, final float pY, final IFont pFont, final String pText,
+					  final TickerTextOptions pTickerTextOptions, final VertexBufferObjectManager pVertexBufferObjectManager) {
 		super(pX, pY, pFont, pText, pTickerTextOptions, pVertexBufferObjectManager);
 
 		this.mTickerTextOptions = pTickerTextOptions;

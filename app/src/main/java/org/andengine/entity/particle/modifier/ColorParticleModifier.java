@@ -2,7 +2,7 @@ package org.andengine.entity.particle.modifier;
 
 import org.andengine.entity.IEntity;
 import org.andengine.entity.particle.Particle;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 import org.andengine.util.modifier.ease.EaseLinear;
 import org.andengine.util.modifier.ease.IEaseFunction;
 
@@ -26,12 +26,12 @@ public class ColorParticleModifier<T extends IEntity> extends BaseTripleValueSpa
 	// Constructors
 	// ===========================================================
 
-	public ColorParticleModifier(final float pFromTime, final float pToTime, final Color pFromColor, final Color pToColor) {
-		this(pFromTime, pToTime, pFromColor.getRed(), pToColor.getRed(), pFromColor.getGreen(), pToColor.getGreen(), pFromColor.getBlue(), pToColor.getBlue());
+	public ColorParticleModifier(final float pFromTime, final float pToTime, final ColorF pFromColorF, final ColorF pToColorF) {
+		this(pFromTime, pToTime, pFromColorF.getRed(), pToColorF.getRed(), pFromColorF.getGreen(), pToColorF.getGreen(), pFromColorF.getBlue(), pToColorF.getBlue());
 	}
 
-	public ColorParticleModifier(final float pFromTime, final float pToTime, final Color pFromColor, final Color pToColor, final IEaseFunction pEaseFunction) {
-		super(pFromTime, pToTime, pFromColor.getRed(), pToColor.getRed(), pFromColor.getGreen(), pToColor.getGreen(), pFromColor.getBlue(), pToColor.getBlue(), pEaseFunction);
+	public ColorParticleModifier(final float pFromTime, final float pToTime, final ColorF pFromColorF, final ColorF pToColorF, final IEaseFunction pEaseFunction) {
+		super(pFromTime, pToTime, pFromColorF.getRed(), pToColorF.getRed(), pFromColorF.getGreen(), pToColorF.getGreen(), pFromColorF.getBlue(), pToColorF.getBlue(), pEaseFunction);
 	}
 
 	public ColorParticleModifier(final float pFromTime, final float pToTime, final float pFromRed, final float pToRed, final float pFromGreen, final float pToGreen, final float pFromBlue, final float pToBlue) {

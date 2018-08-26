@@ -224,7 +224,7 @@ public class NineSliceSprite extends Entity {
 	private void updateVertices() {
 		this.mSpriteBatch.reset();
 
-		final float color = this.mColor.getABGRPackedFloat();
+		final float color = this.mColorF.getABGRPackedFloat();
 
 		final float centerWidth = this.mWidth - this.mInsetLeft - this.mInsetRight;
 		final float centerHeight = this.mHeight - this.mInsetTop - this.mInsetBottom;

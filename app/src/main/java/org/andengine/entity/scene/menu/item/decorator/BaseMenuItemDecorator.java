@@ -17,7 +17,7 @@ import org.andengine.opengl.shader.ShaderProgram;
 import org.andengine.opengl.util.GLState;
 import org.andengine.opengl.vbo.IVertexBufferObject;
 import org.andengine.opengl.vbo.VertexBufferObjectManager;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 import org.andengine.util.adt.transformation.Transformation;
 
 /**
@@ -195,13 +195,13 @@ public abstract class BaseMenuItemDecorator implements IMenuItem {
 	}
 
 	@Override
-	public Color getColor() {
+	public ColorF getColor() {
 		return this.mMenuItem.getColor();
 	}
 
 	@Override
-	public void setColor(final Color pColor) {
-		this.mMenuItem.setColor(pColor);
+	public void setColor(final ColorF pColorF) {
+		this.mMenuItem.setColor(pColorF);
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import org.andengine.entity.primitive.Line;
 import org.andengine.input.touch.TouchEvent;
 import org.andengine.opengl.util.GLState;
 import org.andengine.util.Constants;
-import org.andengine.util.adt.color.Color;
+import org.andengine.util.adt.color.ColorF;
 import org.andengine.util.adt.color.ColorUtils;
 import org.andengine.util.adt.list.SmartList;
 import org.andengine.util.adt.transformation.Transformation;
@@ -105,7 +105,7 @@ public class Entity implements IEntity {
 	/**
 	 *
 	 */
-	protected Color mColor = new Color(Color.WHITE);
+	protected ColorF mColorF = new ColorF(ColorF.WHITE);
 
 	/**
 	 *
@@ -1016,7 +1016,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public float getRed() {
-		return this.mColor.getRed();
+		return this.mColorF.getRed();
 	}
 
 	/**
@@ -1024,7 +1024,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public float getGreen() {
-		return this.mColor.getGreen();
+		return this.mColorF.getGreen();
 	}
 
 	/**
@@ -1032,7 +1032,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public float getBlue() {
-		return this.mColor.getBlue();
+		return this.mColorF.getBlue();
 	}
 
 	/**
@@ -1040,23 +1040,23 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public float getAlpha() {
-		return this.mColor.getAlpha();
+		return this.mColorF.getAlpha();
 	}
 
 	/**
 	 *
 	 */
 	@Override
-	public Color getColor() {
-		return this.mColor;
+	public ColorF getColor() {
+		return this.mColorF;
 	}
 
 	/**
 	 *
 	 */
 	@Override
-	public void setColor(final Color pColor) {
-		this.mColor.set(pColor);
+	public void setColor(final ColorF pColorF) {
+		this.mColorF.set(pColorF);
 
 		this.onUpdateColor();
 	}
@@ -1066,7 +1066,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public void setColor(final int pARGBPackedInt) {
-		ColorUtils.convertARGBPackedIntToColor(pARGBPackedInt, this.mColor);
+		ColorUtils.convertARGBPackedIntToColor(pARGBPackedInt, this.mColorF);
 
 		this.onUpdateColor();
 	}
@@ -1076,7 +1076,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public void setRed(final float pRed) {
-		if (this.mColor.setRedChecking(pRed)) { // TODO Is this check worth it?
+		if (this.mColorF.setRedChecking(pRed)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -1086,7 +1086,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public void setGreen(final float pGreen) {
-		if (this.mColor.setGreenChecking(pGreen)) { // TODO Is this check worth it?
+		if (this.mColorF.setGreenChecking(pGreen)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -1096,7 +1096,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public void setBlue(final float pBlue) {
-		if (this.mColor.setBlueChecking(pBlue)) { // TODO Is this check worth it?
+		if (this.mColorF.setBlueChecking(pBlue)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -1106,7 +1106,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public void setAlpha(final float pAlpha) {
-		if (this.mColor.setAlphaChecking(pAlpha)) { // TODO Is this check worth it?
+		if (this.mColorF.setAlphaChecking(pAlpha)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -1118,7 +1118,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public void setColor(final float pRed, final float pGreen, final float pBlue) {
-		if (this.mColor.setChecking(pRed, pGreen, pBlue)) { // TODO Is this check worth it?
+		if (this.mColorF.setChecking(pRed, pGreen, pBlue)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -1131,7 +1131,7 @@ public class Entity implements IEntity {
 	 */
 	@Override
 	public void setColor(final float pRed, final float pGreen, final float pBlue, final float pAlpha) {
-		if (this.mColor.setChecking(pRed, pGreen, pBlue, pAlpha)) { // TODO Is this check worth it?
+		if (this.mColorF.setChecking(pRed, pGreen, pBlue, pAlpha)) { // TODO Is this check worth it?
 			this.onUpdateColor();
 		}
 	}
@@ -1989,7 +1989,7 @@ public class Entity implements IEntity {
 		this.resetSkewCenter();
 		this.resetScaleCenter();
 
-		this.mColor.reset();
+		this.mColorF.reset();
 
 		this.resetEntityModifiers();
 
