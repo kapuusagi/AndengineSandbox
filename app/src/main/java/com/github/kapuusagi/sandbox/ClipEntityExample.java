@@ -49,8 +49,12 @@ public class ClipEntityExample extends SimpleBaseGameActivity {
     private Font mFont;
     // 座標を表示するためのテキスト
     private Text mTextCoordinate;
+    // クリップエンティティ
+    private ClipEntity mClipEntity;
+    // クリップエリアを表すスプライト
+    private CanvasSprite mClipAreaSprite;
 
-
+    private RectF mCursorRange;
 
     /**
      * エンジンオプションを取得する。
@@ -66,7 +70,7 @@ public class ClipEntityExample extends SimpleBaseGameActivity {
     @Override
     protected void onCreateResources() {
         this.mFont = FontFactory.create(this.getFontManager(), this.getTextureManager(),
-                48, 48, Typeface.DEFAULT, 32, Color.WHITE);
+                256, 256, Typeface.DEFAULT, 32, Color.WHITE);
         this.mFont.load();
     }
 
@@ -75,34 +79,70 @@ public class ClipEntityExample extends SimpleBaseGameActivity {
         Scene scene = new Scene();
         scene.setBackground(new Background(0.0f, 0.0f, 0.0f));
 
-
         {
             final float x = CAMERA_WIDTH * 3 / 4;
             final float y = CAMERA_HEIGHT / 2;
             final float width = CAMERA_WIDTH / 2 - 80;
             final float height = CAMERA_HEIGHT - 80;
+            final float clipWidth = width - 80;
+            final float clipHeight = height - 80;
 
             // クリップされる領域がわかりやすいように、Rectangleの上に同サイズのClipEntityを構築する。
             // Rectangleで背景色が変わるので、わかりやすく処理できる（はず）
             Rectangle clipArea = new Rectangle(x, y, width, height, getVertexBufferObjectManager());
             clipArea.setColor(0x40808080);
             scene.attachChild(clipArea);
+            mClipAreaSprite = new CanvasSprite(getTextureManager(), x, y, clipWidth, clipHeight,
+                    new ICanvasPaint() {
+                        @Override
+                        public void draw(Canvas canvas, Paint paint, int foregroundColor, int backgroundColor) {
+                            paint.setColor(foregroundColor);
+                            paint.setStrokeWidth(1);
+                            paint.setAntiAlias(false);
+                            paint.setStyle(Paint.Style.STROKE);
+                            RectF rect = new RectF(0f, 0f, canvas.getWidth() - 1, canvas.getHeight() - 1);
+                            canvas.drawRect(rect, paint);
+                        }
+                    }, ColorF.WHITE, ColorF.TRANSPARENT,
+                    getVertexBufferObjectManager());
+            mClipAreaSprite.setZIndex(300);
+            scene.attachChild(mClipAreaSprite);
+
             // clipAreaの上にClipEntityを乗せるので、ClipEntityの位置はclipAreaからの
             // 相対座標になる。
-            ClipEntity clipEntity = new ClipEntity(width / 2, height / 2, width, height);
-            clipEntity.setClippingEnabled(true);
-            clipArea.attachChild(clipEntity);
+            mClipEntity = new ClipEntity(width / 2, height / 2, clipWidth, clipHeight);
+            mClipEntity.setClippingEnabled(true);
+            clipArea.attachChild(mClipEntity);
 
             mCanvasSprite = new CanvasSprite(getTextureManager(), 0.0f, 0.0f, 40f, 40f,
                     new PositionRenderer(), ColorF.BLUE, new ColorF(0.0f, 0.0f, 0.0f, 0.125f),
                     getVertexBufferObjectManager());
             mCanvasSprite.setZIndex(255);
 
-            clipEntity.attachChild(mCanvasSprite);
-            //clipArea.attachChild(mCanvasSprite);
+            mClipEntity.attachChild(mCanvasSprite);
+
+            mCursorRange = new RectF(-100.0f, clipHeight + 100, clipWidth + 100, -100.0f);
         }
 
         {
+            // 切り替え
+            Rectangle onoffButton = new Rectangle(CAMERA_WIDTH / 4, 240, 320, 40, getVertexBufferObjectManager()) {
+                @Override
+                public boolean onAreaTouched(TouchEvent pSceneTouchEvent, float pTouchAreaLocalX, float pTouchAreaLocalY) {
+                    boolean clipEnabled = mClipEntity.isClippingEnabled();
+                    mClipEntity.setClippingEnabled(!clipEnabled);
+                    mClipAreaSprite.setVisible(!clipEnabled);
+                    return true;
+                }
+            };
+            onoffButton.setColor(0xffff8000);
+            Text onoffMsgText = new Text(onoffButton.getWidth() / 2, onoffButton.getHeight() / 2, mFont,
+                    "ClipEntity On/Off",
+                    new TextOptions(HorizontalAlign.CENTER), getVertexBufferObjectManager());
+            onoffButton.attachChild(onoffMsgText);
+            scene.attachChild(onoffButton);
+            scene.registerTouchArea(onoffButton);
+
             // 上ボタン
             CanvasSprite upButton = new CanvasSprite(getTextureManager(), 160f, 160f, 40f, 40f,
                     new TriangleButtonRenderer(TriangleButtonRenderer.DirectionType.UP), ColorF.WHITE, ColorF.RED,
@@ -171,23 +211,24 @@ public class ClipEntityExample extends SimpleBaseGameActivity {
                 if (mPressedButtonType != null) {
                     switch (mPressedButtonType) {
                         case "UP":
-                            y++;
+                            y = Math.min(y + 1, mCursorRange.top);
                             break;
                         case "LEFT":
-                            x--;
+                            x = Math.max(x - 1, mCursorRange.left);
                             break;
                         case "RIGHT":
-                            x++;
+                            x = Math.min(x + 1, mCursorRange.right);
                             break;
                         case "DOWN":
-                            y--;
+                            y = Math.max(y - 1, mCursorRange.bottom);
                             break;
                     }
                 }
+
                 mCanvasSprite.setPosition(x, y);
 
                 // Update coordinate
-                mTextCoordinate.setText(String.format("(%.1f, %.1f)", x, y));
+                mTextCoordinate.setText("(" + Integer.toString((int)(x)) + " ," + Integer.toString((int)(y)) + ")");
             }
             @Override
             public void reset() {
