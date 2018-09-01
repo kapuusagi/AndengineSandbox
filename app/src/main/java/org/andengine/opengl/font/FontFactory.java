@@ -11,6 +11,11 @@ import android.content.res.AssetManager;
 import android.graphics.Typeface;
 
 /**
+ * OpenGLに描画するためのフォントを作成する。
+ * テクスチャには、文字を表現するのに十分なサイズを指定すること。
+ * FontFactoryに渡す、または作成したテクスチャは部分部分が1つの文字を描画するために消費されていく。
+ * 十分なサイズが無いとテキストを描画しようとした時に例外がスルーされる。
+ *
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  *
@@ -86,6 +91,7 @@ public final class FontFactory {
 
 	/**
 	 * 使用するテクスチャ、アンチエイリアスオプション、フォント色を指定してフォントを作成する。
+	 * フォントはデフォルトのものが使用される。
 	 *
 	 * @param pFontManager フォントマネージャ
 	 * @param pTexture テクスチャ

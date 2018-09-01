@@ -4,6 +4,8 @@ import org.andengine.opengl.texture.ITexture;
 import org.andengine.util.modifier.IModifier.DeepCopyNotSupportedException;
 
 /**
+ * テクスチャの位置とサイズを表すインタフェース。
+ *
  * (c) 2011 Zynga Inc.
  *
  * @author Nicolas Gramlich <ngramlich@zynga.com>
@@ -18,38 +20,52 @@ public interface ITextureRegion {
 	// Methods
 	// ===========================================================
 
-	public float getTextureX();
-	public float getTextureY();
+	/**
+	 * X座標を取得する。
+	 *
+	 *
+	 *
+	 * @return X位置
+	 */
+	float getTextureX();
 
-	public void setTextureX(final float pTextureX);
-	public void setTextureY(final float pTextureY);
-	public void setTexturePosition(final float pTextureX, final float pTextureY);
+	/**
+	 * Y座標を取得する。
+	 *
+	 *
+	 * @return Y位置
+	 */
+	float getTextureY();
+
+	void setTextureX(final float pTextureX);
+	void setTextureY(final float pTextureY);
+	void setTexturePosition(final float pTextureX, final float pTextureY);
 
 	/**
 	 * Note: Takes {@link #getScale()} into account!
 	 */
-	public float getWidth();
+	float getWidth();
 	/**
 	 * Note: Takes {@link #getScale()} into account!
 	 */
-	public float getHeight();
+	float getHeight();
 
-	public void setTextureWidth(final float pTextureWidth);
-	public void setTextureHeight(final float pTextureHeight);
-	public void setTextureSize(final float pTextureWidth, final float pTextureHeight);
+	void setTextureWidth(final float pTextureWidth);
+	void setTextureHeight(final float pTextureHeight);
+	void setTextureSize(final float pTextureWidth, final float pTextureHeight);
 
-	public void set(final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight);
+	void set(final float pTextureX, final float pTextureY, final float pTextureWidth, final float pTextureHeight);
 
-	public float getU();
-	public float getU2();
-	public float getV();
-	public float getV2();
+	float getU();
+	float getU2();
+	float getV();
+	float getV2();
 
-	public boolean isScaled();
-	public float getScale();
-	public boolean isRotated();
+	boolean isScaled();
+	float getScale();
+	boolean isRotated();
 
-	public ITexture getTexture();
+	ITexture getTexture();
 
-	public ITextureRegion deepCopy() throws DeepCopyNotSupportedException;
+	ITextureRegion deepCopy() throws DeepCopyNotSupportedException;
 }

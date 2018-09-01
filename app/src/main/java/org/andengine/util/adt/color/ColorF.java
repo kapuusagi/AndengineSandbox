@@ -40,6 +40,7 @@ public class ColorF {
 	public static final ColorF BLACK = new ColorF(0, 0, 0, 1);
 	public static final ColorF RED = new ColorF(1, 0, 0, 1);
 	public static final ColorF YELLOW = new ColorF(1, 1, 0, 1);
+	public static final ColorF ORANGE = new ColorF( 1, 0.5f,1,1);
 	public static final ColorF GREEN = new ColorF(0, 1, 0, 1);
 	public static final ColorF CYAN = new ColorF(0, 1, 1, 1);
 	public static final ColorF BLUE = new ColorF(0, 0, 1, 1);

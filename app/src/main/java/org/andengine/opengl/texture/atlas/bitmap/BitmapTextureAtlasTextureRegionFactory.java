@@ -116,7 +116,9 @@ public final class BitmapTextureAtlasTextureRegionFactory {
 	}
 
 
-	public static TextureRegion createFromSource(final BitmapTextureAtlas pBitmapTextureAtlas, final IBitmapTextureAtlasSource pBitmapTextureAtlasSource, final int pTextureX, final int pTextureY) {
+	public static TextureRegion createFromSource(final BitmapTextureAtlas pBitmapTextureAtlas,
+												 final IBitmapTextureAtlasSource pBitmapTextureAtlasSource,
+												 final int pTextureX, final int pTextureY) {
 		return TextureRegionFactory.createFromSource(pBitmapTextureAtlas, pBitmapTextureAtlasSource, pTextureX, pTextureY);
 	}
 
