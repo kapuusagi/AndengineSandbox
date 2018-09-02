@@ -72,7 +72,9 @@ public class CanvasSprite extends Shape implements ISprite {
     private ISpriteVertexBufferObject mSpriteVertexBufferObject;
     // テクスチャ
     private BitmapTextureAtlas mBitmapTextureAtlas;
-    // 背景色
+    /**
+     * 背景色
+     */
     protected ColorF mBackgroundColorF;
 
     // ===========================================================

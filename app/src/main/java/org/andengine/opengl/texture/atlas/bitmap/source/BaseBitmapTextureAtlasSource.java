@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
 /**
+ * IBitmapTextureAtlasSource(Bitmapテクスチャのインタフェース)の単純実装を行ったクラス。
+ *
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  *
@@ -28,7 +30,8 @@ public abstract class BaseBitmapTextureAtlasSource extends BaseTextureAtlasSourc
 	// ===========================================================
 
 	public BaseBitmapTextureAtlasSource(final IBitmapTextureAtlasSource pBitmapTextureAtlasSource) {
-		super(pBitmapTextureAtlasSource.getTextureX(), pBitmapTextureAtlasSource.getTextureY(), pBitmapTextureAtlasSource.getTextureWidth(), pBitmapTextureAtlasSource.getTextureHeight());
+		super(pBitmapTextureAtlasSource.getTextureX(), pBitmapTextureAtlasSource.getTextureY(),
+                pBitmapTextureAtlasSource.getTextureWidth(), pBitmapTextureAtlasSource.getTextureHeight());
 
 		this.mBitmapTextureAtlasSource = pBitmapTextureAtlasSource;
 	}

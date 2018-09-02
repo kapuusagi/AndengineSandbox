@@ -7,6 +7,9 @@ import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 
 /**
+ * ビットマップテクスチャの基本的な実装を行ったクラス。
+ * onLoadBitmap()では何も描画されていない、空のBitmapオブジェクトを構築して返す。
+ *
  * (c) 2010 Nicolas Gramlich
  * (c) 2011 Zynga Inc.
  *
@@ -26,10 +29,23 @@ public class EmptyBitmapTextureAtlasSource extends BaseTextureAtlasSource implem
 	// Constructors
 	// ===========================================================
 
+    /**
+     * 幅と高さを指定してオブジェクトを構築する。
+     * xとyは0で初期化される。
+     * @param pTextureWidth 幅
+     * @param pTextureHeight 高さ
+     */
 	public EmptyBitmapTextureAtlasSource(final int pTextureWidth, final int pTextureHeight) {
 		this(0, 0, pTextureWidth, pTextureHeight);
 	}
 
+    /**
+     * 位置および幅と高さを指定してオブジェクトを構築する。
+     * @param pTextureX x位置
+     * @param pTextureY y位置
+     * @param pTextureWidth 幅
+     * @param pTextureHeight 高さ
+     */
 	public EmptyBitmapTextureAtlasSource(final int pTextureX, final int pTextureY, final int pTextureWidth, final int pTextureHeight) {
 		super(pTextureX, pTextureY, pTextureWidth, pTextureHeight);
 	}
